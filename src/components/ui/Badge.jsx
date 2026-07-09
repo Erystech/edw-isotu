@@ -11,6 +11,11 @@ const tones = {
   muted: 'bg-[var(--color-border)]/60 text-[var(--color-text-muted)]',
   success: 'bg-[var(--color-success)]/10 text-[var(--color-success)]',
   danger: 'bg-[var(--color-danger)]/10 text-[var(--color-danger)]',
+  // Solid surface for badges placed on top of photography (e.g. a
+  // book cover or thumbnail) — a dedicated tone instead of asking
+  // callers to override `bg-*` via className, which would collide
+  // with the tone's own background utility at equal specificity.
+  surface: 'bg-white text-[var(--color-primary)] shadow-[var(--shadow-soft)]',
 };
 
 export default function Badge({ tone = 'accent', className, children, ...props }) {

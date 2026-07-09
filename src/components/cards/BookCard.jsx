@@ -23,7 +23,7 @@ export default function BookCard({
           className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
         {badge && (
-          <Badge tone="accent" className="absolute left-4 top-4 bg-white shadow-[var(--shadow-soft)]">
+          <Badge tone="surface" className="absolute left-4 top-4">
             {badge}
           </Badge>
         )}

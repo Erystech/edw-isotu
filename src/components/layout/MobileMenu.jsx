@@ -2,28 +2,52 @@ import { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import Button from '../ui/Button';
 
-/**
- * MobileMenu
- * Full-height slide-in panel. Traps focus while open, closes on
- * Escape, and restores focus to the trigger on close.
- */
+
 export default function MobileMenu({ id, open, onClose, links }) {
   const panelRef = useRef(null);
+  const triggerRef = useRef(null);
 
   useEffect(() => {
     if (!open) return;
 
+    triggerRef.current = document.activeElement;
+
+    const getFocusable = () =>
+      Array.from(
+        panelRef.current?.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])') ?? []
+      );
+
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+
+      if (e.key !== 'Tab') return;
+
+      const focusable = getFocusable();
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
 
     document.addEventListener('keydown', onKeyDown);
     document.body.style.overflow = 'hidden';
-    panelRef.current?.querySelector('a, button')?.focus();
+    getFocusable()[0]?.focus();
 
     return () => {
       document.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = '';
+      triggerRef.current?.focus?.();
     };
   }, [open, onClose]);
 
