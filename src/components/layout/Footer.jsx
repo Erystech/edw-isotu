@@ -1,4 +1,4 @@
-import { Linkedin, Youtube, Instagram, Twitter, Mail } from 'lucide-react';
+// import { Linkedin, Youtube, Instagram, Twitter, Mail } from 'lucide-react';
 import Container from './Container';
 import Divider from '../ui/Divider';
 
@@ -29,12 +29,12 @@ const COLUMNS = [
   },
 ];
 
-const SOCIALS = [
-  { label: 'LinkedIn', href: '#', icon: Linkedin },
-  { label: 'X (Twitter)', href: '#', icon: Twitter },
-  { label: 'Instagram', href: '#', icon: Instagram },
-  { label: 'YouTube', href: '#', icon: Youtube },
-];
+// const SOCIALS = [
+//   { label: 'LinkedIn', href: '#', icon: Linkedin },
+//   { label: 'X (Twitter)', href: '#', icon: Twitter },
+//   { label: 'Instagram', href: '#', icon: Instagram },
+//   { label: 'YouTube', href: '#', icon: Youtube },
+// ];
 
 export default function Footer() {
   return (
@@ -53,7 +53,7 @@ export default function Footer() {
               href="mailto:hello@edwinisotu.com"
               className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition-colors hover:text-[var(--color-accent-light)]"
             >
-              <Mail size={16} aria-hidden="true" />
+              {/* <Mail size={16} aria-hidden="true" /> */}
               hello@edwinisotu.com
             </a>
           </div>
@@ -86,7 +86,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Edwin Isotu. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            {SOCIALS.map(({ label, href, icon: Icon }) => (
+            {/* {SOCIALS.map(({ label, href, icon: Icon }) => (
               <a
                 key={label}
                 href={href}
@@ -95,7 +95,7 @@ export default function Footer() {
               >
                 <Icon size={16} aria-hidden="true" />
               </a>
-            ))}
+            ))} */}
           </div>
         </div>
       </Container>
