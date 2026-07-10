@@ -46,12 +46,13 @@ export default function Navbar({ transparent = true }) {
         >
           <a
             href="/"
-            className={cn(
-              'font-[var(--font-heading)] text-lg font-extrabold tracking-tight transition-colors',
-              isSolid ? 'text-[var(--color-primary)]' : 'text-white'
-            )}
+            className="flex items-center transition-opacity hover:opacity-80"
           >
-            Edwin Isotu
+            <img 
+              src='/Isotu-logo.svg'
+              alt="Edwin Isotu" 
+              className="h-9 w-auto object-contain" /* Adjust h-8 to scale the logo */
+            />
           </a>
 
           <ul className="hidden items-center gap-8 lg:flex">
