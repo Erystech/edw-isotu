@@ -1,0 +1,1 @@
+export { default as FeaturedBook } from './FeaturedBook';
