@@ -6,7 +6,6 @@ import {
   SpeakerCard,
   TestimonialCard,
   BookCard,
-  VideoCard,
   BlogCard,
   StatsCard,
 } from '../components/cards';
@@ -22,7 +21,6 @@ const HERO_IMAGE = HeroImg
   'https://placehold.co/1600x1000/0B132B/16324F?text=Edwin+Isotu';
 const PORTRAIT_IMAGE = IsotuPotrait;
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
-const VIDEO_THUMB = 'https://placehold.co/1200x675/0B132B/FFFFFF?text=Keynote+Reel';
 const BLOG_THUMB = 'https://placehold.co/800x450/16324F/FFFFFF?text=Insight';
 const CLIENT_LOGO = 'https://placehold.co/160x40/transparent/6B7280?text=Client';
 const PRESS_LOGO = 'https://placehold.co/140x32/transparent/111827?text=Press';
@@ -195,12 +193,18 @@ function Home() {
           className="mx-auto text-center"
         />
         <div className="mx-auto mt-10 max-w-3xl">
-          <VideoCard
-            thumbnail={VIDEO_THUMB}
-            title="Keynote Reel 2026"
-            duration="3:42"
-            onPlay={() => alert('Open video modal here')}
-          />
+          {/* Responsive iframe wrapper */}
+          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-[var(--color-border)]">
+            <iframe 
+              className="h-full w-full"
+              src="https://www.youtube.com/embed/vtnS37ua4Vo?si=QbkIQ3ima9WCpHlQ" 
+              title="YouTube video player" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              referrerPolicy="strict-origin-when-cross-origin" 
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       </Section>
 
