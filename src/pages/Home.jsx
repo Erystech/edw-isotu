@@ -15,6 +15,7 @@ import { SectionHeading, CTABanner, LogoStrip, Accordion } from '../components/m
 import { Hero, AboutPreview } from '../components/sections';
 import IsotuPotrait from '../assets/images/edisotu.webp'
 import HeroImg from '../assets/images/isotu-banner.webp'
+import { clientLogos } from '../assets/logos';
 
 // Placeholder imagery — swap for real photography/video assets once available.
 const HERO_IMAGE = HeroImg
@@ -145,16 +146,13 @@ function Home() {
         ]}
       />
 
-      <Section containerSize="narrow" className="!pt-16 !pb-16">
+      <Section className="!pt-16 !pb-16">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
           Trusted by teams at
         </p>
         <LogoStrip
           className="mt-8"
-          logos={[1, 2, 3, 4, 5].map((i) => ({
-            src: CLIENT_LOGO,
-            alt: `Client logo ${i}`,
-          }))}
+          logos={clientLogos}
         />
       </Section>
 
