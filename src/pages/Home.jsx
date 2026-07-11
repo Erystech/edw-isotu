@@ -14,9 +14,10 @@ import { Quote } from '../components/typography';
 import { SectionHeading, CTABanner, LogoStrip, Accordion } from '../components/misc';
 import { Hero, AboutPreview } from '../components/sections';
 import IsotuPotrait from '../assets/images/edisotu.webp'
+import HeroImg from '../assets/images/isotu-banner.webp'
 
 // Placeholder imagery — swap for real photography/video assets once available.
-const HERO_IMAGE =
+const HERO_IMAGE = HeroImg
   'https://placehold.co/1600x1000/0B132B/16324F?text=Edwin+Isotu';
 const PORTRAIT_IMAGE = IsotuPotrait;
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';

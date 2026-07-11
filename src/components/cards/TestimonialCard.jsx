@@ -3,7 +3,6 @@ import Quote from '../typography/Quote';
 
 /**
  * TestimonialCard
- * @param {string} avatar - optional image src
  */
 export default function TestimonialCard({
   quote,
@@ -26,12 +25,12 @@ export default function TestimonialCard({
             width={44}
             height={44}
             loading="lazy"
-            className="h-11 w-11 rounded-full object-cover"
+            className="h-11 w-11 rounded-full object-cover border border-[var(--color-border-light)]"
           />
         ) : (
           <div
             aria-hidden="true"
-            className="grid h-11 w-11 place-items-center rounded-full bg-[var(--color-primary)]/10 text-sm font-semibold text-[var(--color-primary)]"
+            className="grid h-11 w-11 place-items-center rounded-full bg-[var(--color-surface-elevated)] border border-[var(--color-border-light)] text-sm font-semibold text-[var(--color-primary)]"
           >
             {name?.[0]}
           </div>

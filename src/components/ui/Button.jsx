@@ -4,22 +4,19 @@ import { cn } from '../../lib/cn';
 /**
  * Button
  * Renders an <a> when `href` is provided, otherwise a <button>.
- *
- * @param {'primary'|'secondary'|'ghost'} variant
- * @param {'sm'|'md'|'lg'} size
  */
 const base =
-  'inline-flex items-center gap-2 rounded-xl font-semibold transition-all duration-300 ' +
-  'focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2 ' +
+  'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-300 ' +
+  'focus-visible:outline-2 focus-visible:outline-[var(--color-accent-light)] focus-visible:outline-offset-2 ' +
   'disabled:cursor-not-allowed disabled:opacity-50';
 
 const variants = {
   primary:
-    'bg-[var(--color-accent)] text-white hover:-translate-y-[3px] hover:shadow-[var(--shadow-gold)]',
+    'bg-[var(--color-accent-light)] text-white hover:-translate-y-[2px] hover:bg-[var(--color-accent-hover)]',
   secondary:
-    'border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white',
+    'border border-[var(--color-border)] text-[var(--color-text)] hover:border-[var(--color-accent-light)] hover:bg-[var(--color-surface)]',
   ghost:
-    'text-[var(--color-primary)] hover:bg-[var(--color-primary)]/5',
+    'text-[var(--color-text)] hover:text-[var(--color-accent-light)] hover:bg-[var(--color-surface)]',
 };
 
 const sizes = {
@@ -53,9 +50,7 @@ export default Button;
 
 /**
  * IconButton
- * Square button for a single icon — used in carousels, cards,
- * social rows, and toolbar-style actions.
- * @param {'sm'|'md'|'lg'} size
+ * Square button for a single icon.
  */
 const iconSizes = {
   sm: 'h-9 w-9',

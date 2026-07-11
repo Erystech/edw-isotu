@@ -31,7 +31,15 @@ export default function Hero({
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="hero-overlay absolute inset-0" aria-hidden="true" />
+      {/* 
+        Refactored Overlay:
+        Removed the custom class and enforced a strict dark mode mask 
+        using your primary background token at 80% opacity.
+      */}
+      <div 
+        className="absolute inset-0 bg-[var(--color-background)]/80" 
+        aria-hidden="true" 
+      />
 
       <Container className="relative z-10 pb-16 pt-40 lg:pb-28 lg:pt-48">
         <div className="max-w-2xl">

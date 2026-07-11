@@ -9,14 +9,12 @@ import Paragraph from '../typography/Paragraph';
  * top of every homepage/page section.
  *
  * @param {'left'|'center'} align
- * @param {boolean} invert - use on dark/tone="primary" sections
  */
 export default function SectionHeading({
   eyebrow,
   title,
   description,
   align = 'left',
-  invert = false,
   className,
   ...props
 }) {
@@ -29,12 +27,14 @@ export default function SectionHeading({
       )}
       {...props}
     >
-      {eyebrow && <Label as="p">{eyebrow}</Label>}
-      <Heading size="lg" className={cn('mt-3', invert && '!text-white')}>
+      {eyebrow && <Label as="p" className="text-[var(--color-accent-light)]">{eyebrow}</Label>}
+      
+      <Heading size="lg" className="mt-3 text-[var(--color-primary)]">
         {title}
       </Heading>
+      
       {description && (
-        <Paragraph tone="muted" size="lg" className={cn('mt-4', invert && '!text-white/70')}>
+        <Paragraph size="lg" className="mt-4 text-[var(--color-text-muted)]">
           {description}
         </Paragraph>
       )}

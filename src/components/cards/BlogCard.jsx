@@ -4,6 +4,9 @@ import Paragraph from '../typography/Paragraph';
 import Label from '../typography/Label';
 import Badge from '../ui/Badge';
 
+/**
+ * BlogCard
+ */
 export default function BlogCard({
   image,
   category,
@@ -20,12 +23,12 @@ export default function BlogCard({
       href={href}
       className={cn(
         'group flex flex-col overflow-hidden rounded-2xl',
-        'focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2',
+        'focus-visible:outline-2 focus-visible:outline-[var(--color-accent-light)] focus-visible:outline-offset-2',
         className
       )}
       {...props}
     >
-      <div className="overflow-hidden rounded-2xl">
+      <div className="overflow-hidden rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)]">
         <img
           src={image}
           alt=""
@@ -40,7 +43,7 @@ export default function BlogCard({
         </Badge>
       )}
 
-      <Heading as="h3" size="sm" className="mt-3 transition-colors group-hover:text-[var(--color-accent)]">
+      <Heading as="h3" size="sm" className="mt-3 transition-colors group-hover:text-[var(--color-accent-light)]">
         {title}
       </Heading>
       <Paragraph tone="muted" size="sm" className="mt-2">

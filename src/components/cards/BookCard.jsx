@@ -4,6 +4,9 @@ import Paragraph from '../typography/Paragraph';
 import Button from '../ui/Button';
 import Badge from '../ui/Badge';
 
+/**
+ * BookCard
+ */
 export default function BookCard({
   cover,
   title,
@@ -15,7 +18,7 @@ export default function BookCard({
 }) {
   return (
     <div className={cn('group flex flex-col', className)} {...props}>
-      <div className="relative overflow-hidden rounded-2xl bg-[var(--color-primary)]/5 shadow-[var(--shadow-soft)]">
+      <div className="relative overflow-hidden rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)]">
         <img
           src={cover}
           alt={`${title} book cover`}
@@ -29,10 +32,10 @@ export default function BookCard({
         )}
       </div>
 
-      <Heading as="h3" size="sm" className="mt-5">
+      <Heading as="h3" size="sm" className="mt-5 text-[var(--color-primary)]">
         {title}
       </Heading>
-      <Paragraph tone="muted" size="sm" className="mt-2 flex-1">
+      <Paragraph tone="muted" size="sm" className="mt-2 flex-1 text-[var(--color-text-muted)]">
         {tagline}
       </Paragraph>
 

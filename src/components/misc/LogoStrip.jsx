@@ -15,7 +15,7 @@ export default function LogoStrip({ logos, marquee = false, className, ...props 
           src={logo.src}
           alt={logo.alt}
           loading="lazy"
-          className="h-7 w-auto shrink-0 object-contain opacity-60 grayscale transition-opacity hover:opacity-100 lg:h-8"
+          className="h-7 w-auto shrink-0 object-contain opacity-60 brightness-0 invert transition-opacity hover:opacity-100 lg:h-8"
         />
       ))}
     </>
@@ -41,3 +41,4 @@ export default function LogoStrip({ logos, marquee = false, className, ...props 
     </div>
   );
 }
+

@@ -15,9 +15,8 @@ const NAV_LINKS = [
 
 /**
  * Navbar
- * Sticky header. Turns from transparent-on-hero to a glass surface
- * once the page scrolls, so it reads well over a dark hero image
- * without a permanent heavy bar.
+ * Sticky header. Turns from transparent-on-hero to a solid elevated surface
+ * once the page scrolls, enforcing the strict dark mode rules without glassmorphism.
  */
 export default function Navbar({ transparent = true }) {
   const [scrolled, setScrolled] = useState(false);
@@ -35,8 +34,11 @@ export default function Navbar({ transparent = true }) {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        isSolid ? 'glass shadow-[var(--shadow-navbar)]' : 'bg-transparent'
+        'fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b',
+        // Refactored: Removed 'glass' in favor of a solid surface and border for a flat UI look.
+        isSolid 
+          ? 'bg-[var(--color-background)] border-[var(--color-border)] shadow-[var(--shadow-soft)]' 
+          : 'bg-transparent border-transparent'
       )}
     >
       <Container>
@@ -51,7 +53,7 @@ export default function Navbar({ transparent = true }) {
             <img 
               src='/Isotu-logo.svg'
               alt="Edwin Isotu" 
-              className="h-9 w-auto object-contain" /* Adjust h-8 to scale the logo */
+              className="h-9 w-auto object-contain"
             />
           </a>
 
@@ -62,9 +64,10 @@ export default function Navbar({ transparent = true }) {
                   href={link.href}
                   className={cn(
                     'text-sm font-medium transition-colors',
+                    // Refactored: Unified hover state to use accent-light for accessible contrast on dark backgrounds.
                     isSolid
-                      ? 'text-[var(--color-text)] hover:text-[var(--color-accent)]'
-                      : 'text-white/90 hover:text-white'
+                      ? 'text-[var(--color-text)] hover:text-[var(--color-accent-light)]'
+                      : 'text-white/90 hover:text-[var(--color-accent-light)]'
                   )}
                 >
                   {link.label}
@@ -83,7 +86,8 @@ export default function Navbar({ transparent = true }) {
             type="button"
             className={cn(
               'grid h-10 w-10 place-items-center rounded-lg lg:hidden',
-              'focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2'
+              'transition-colors hover:bg-[var(--color-surface)]',
+              'focus-visible:outline-2 focus-visible:outline-[var(--color-accent-light)] focus-visible:outline-offset-2'
             )}
             aria-label="Open menu"
             aria-expanded={menuOpen}

@@ -2,7 +2,8 @@ import { cn } from '../../lib/cn';
 
 const tones = {
   default: 'border-[var(--color-border)]',
-  inverted: 'border-white/10',
+  muted: 'border-[var(--color-border-light)]',
+  accent: 'border-[var(--color-accent-light)]',
 };
 
 export default function Divider({

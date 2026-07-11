@@ -2,20 +2,16 @@ import { cn } from '../../lib/cn';
 
 /**
  * Badge
- * Small label used for categories, statuses, and eyebrows.
- * @param {'accent'|'primary'|'muted'|'success'|'danger'} tone
+ * @param {'accent'|'primary'|'muted'|'success'|'danger'|'surface'} tone
  */
 const tones = {
-  accent: 'bg-[var(--color-accent)]/10 text-[var(--color-accent)]',
-  primary: 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]',
-  muted: 'bg-[var(--color-border)]/60 text-[var(--color-text-muted)]',
-  success: 'bg-[var(--color-success)]/10 text-[var(--color-success)]',
-  danger: 'bg-[var(--color-danger)]/10 text-[var(--color-danger)]',
-  // Solid surface for badges placed on top of photography (e.g. a
-  // book cover or thumbnail) — a dedicated tone instead of asking
-  // callers to override `bg-*` via className, which would collide
-  // with the tone's own background utility at equal specificity.
-  surface: 'bg-white text-[var(--color-primary)] shadow-[var(--shadow-soft)]',
+  accent: 'bg-[var(--color-surface)] border border-[var(--color-accent-light)] text-[var(--color-accent-light)]',
+  primary: 'bg-[var(--color-surface)] border border-[var(--color-primary-muted)] text-[var(--color-primary)]',
+  muted: 'bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--color-text-muted)]',
+  success: 'bg-[var(--color-surface)] border border-[var(--color-success)] text-[var(--color-success)]',
+  danger: 'bg-[var(--color-surface)] border border-[var(--color-danger)] text-[var(--color-danger)]',
+  /* Refactored Surface Badge: Replaced the broken white-on-white configuration */
+  surface: 'bg-[var(--color-surface-elevated)] border border-[var(--color-border-light)] text-[var(--color-primary)]',
 };
 
 export default function Badge({ tone = 'accent', className, children, ...props }) {

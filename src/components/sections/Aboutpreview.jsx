@@ -5,11 +5,8 @@ import Button from '../ui/Button';
 
 /**
  * AboutPreview
- * Two-column bio teaser: portrait + copy. Designed to live inside
- * a <Section> (relies on the parent for Container/padding), and to
- * be reused as the top of the full About page in a later phase.
- *
- * @param {string[]} paragraphs
+ * Two-column bio teaser: portrait + copy. 
+ * Refactored to enforce image boundaries in dark mode.
  */
 export default function AboutPreview({
   eyebrow,
@@ -42,7 +39,7 @@ export default function AboutPreview({
         )}
       </div>
 
-      <div className="order-1 overflow-hidden rounded-3xl shadow-[var(--shadow-card)] lg:order-2">
+      <div className="order-1 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] lg:order-2">
         <img
           src={image}
           alt={imageAlt}

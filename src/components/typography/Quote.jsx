@@ -9,11 +9,11 @@ export default function Quote({ className, children, cite, ...props }) {
   return (
     <figure className={cn('relative', className)} {...props}>
       <QuoteMark
-        className="mb-4 text-[var(--color-accent)]/40"
+        className="mb-4 text-[var(--color-accent-light)]"
         size={36}
         aria-hidden="true"
       />
-      <blockquote className="font-[var(--font-heading)] text-xl font-medium leading-snug text-[var(--color-primary)] lg:text-2xl">
+      <blockquote className="font-[var(--font-heading)] text-xl font-medium leading-snug text-[var(--color-text)] lg:text-2xl">
         {children}
       </blockquote>
       {cite && (

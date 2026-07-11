@@ -15,7 +15,12 @@ export default function CTABanner({
   return (
     <div
       className={cn(
-        'hero-overlay relative overflow-hidden rounded-3xl bg-[var(--color-primary)] px-8 py-16 text-center lg:px-16',
+        /* 
+          Refactored Background:
+          Removed 'hero-overlay' and 'bg-primary'. Applied your elevated surface 
+          token and a subtle border to maintain the flat UI aesthetic while creating depth.
+        */
+        'relative overflow-hidden rounded-3xl bg-[var(--color-surface-elevated)] border border-[var(--color-border)] px-8 py-16 text-center shadow-[var(--shadow-card)] lg:px-16',
         className
       )}
       {...props}
@@ -25,11 +30,11 @@ export default function CTABanner({
           {eyebrow}
         </p>
       )}
-      <Heading size="xl" className="mx-auto mt-4 max-w-2xl text-white">
+      <Heading size="xl" className="mx-auto mt-4 max-w-2xl text-[var(--color-primary)]">
         {title}
       </Heading>
       {description && (
-        <Paragraph size="lg" className="mx-auto mt-4 max-w-xl text-white/75">
+        <Paragraph size="lg" className="mx-auto mt-4 max-w-xl text-[var(--color-text-muted)]">
           {description}
         </Paragraph>
       )}
@@ -45,7 +50,11 @@ export default function CTABanner({
             href={secondaryAction.href}
             variant="secondary"
             size="lg"
-            className="!border-white !text-white hover:!bg-white hover:!text-[var(--color-primary)]"
+            /* 
+              Refactored Button:
+              Removed the !important overrides. Your global .btn-secondary styles 
+              will now properly handle the hover transitions.
+            */
           >
             {secondaryAction.label}
           </Button>

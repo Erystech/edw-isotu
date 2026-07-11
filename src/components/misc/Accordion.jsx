@@ -4,8 +4,8 @@ import { cn } from '../../lib/cn';
 
 /**
  * Accordion
- * @param {{ question: string, answer: string }[]} items
- * @param {boolean} allowMultiple - if false, opening one item closes others
+ * Accessible expanding panel system. Contrast tokens refactored 
+ * to pass dark mode legibility standards.
  */
 export default function Accordion({ items, allowMultiple = false, className, ...props }) {
   const baseId = useId();
@@ -39,7 +39,7 @@ export default function Accordion({ items, allowMultiple = false, className, ...
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggle(index)}
-                className="flex w-full items-center justify-between gap-4 py-6 text-left focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2"
+                className="flex w-full items-center justify-between gap-4 py-6 text-left focus-visible:outline-2 focus-visible:outline-[var(--color-accent-light)] focus-visible:outline-offset-2"
               >
                 <span className="font-[var(--font-heading)] text-base font-semibold text-[var(--color-primary)] lg:text-lg">
                   {item.question}
@@ -48,7 +48,7 @@ export default function Accordion({ items, allowMultiple = false, className, ...
                   size={20}
                   aria-hidden="true"
                   className={cn(
-                    'shrink-0 text-[var(--color-accent)] transition-transform duration-300',
+                    'shrink-0 text-[var(--color-accent-light)] transition-transform duration-300',
                     isOpen && 'rotate-180'
                   )}
                 />

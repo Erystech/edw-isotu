@@ -1,51 +1,52 @@
 @import "tailwindcss";
+
 /* ===========================================================
-   EDWIN ISOTU REDESIGN DESIGN SYSTEM
+   EDWIN ISOTU — MINIMALIST DESIGN SYSTEM
+   Strict dark mode. Solid colors only. 
+   Zero gradients. Zero glassmorphism.
 =========================================================== */
 
 @theme {
 
-  /* Typography */
-
+  /* ---- Typography ---- */
   --font-heading: "Manrope", sans-serif;
   --font-body: "Inter", sans-serif;
-  
-  /* Backgrounds */
 
-  --color-background: #07130E;
-  --color-background-alt: #0B1A14;
-  --color-surface: #10211A;
-  --color-surface-elevated: #162A21;
+  /* ---- Minimalist Dark Mode Palette ---- */
+  /* Pure, deep blacks to replace the original charcoal. 
+     This creates better contrast for a premium, stark aesthetic. */
+  --color-background: #000000;
+  --color-background-alt: #09090B;
+  --color-surface: #121212;
+  --color-surface-elevated: #18181B;
 
-  /* Brand */
+  /* High contrast text */
+  --color-text: #D4D4D8;
+  --color-text-muted: #A1A1AA;
 
-  --color-primary: #EAF4EE;
-  --color-primary-muted: #B8CEC2;
+  /* Brand / Headings */
+  --color-primary: #FFFFFF;
+  --color-primary-muted: #D4D4D8;
 
-  --color-accent: #004526;
-  --color-accent-light: #006B3B;
-  --color-accent-hover: #00894D;
+  /* ---- Retained Accent Green ---- */
+  --color-accent: #0B4A2C;
+  --color-accent-light: #157A46;
+  --color-accent-hover: #199455; /* Computed solid step for hover states */
 
   --color-white: #FFFFFF;
 
-
-
-  --color-text: #111827;
-  --color-text-muted: #6B7280;
-
-  /* States */
-
+  /* ---- States ---- */
   --color-success: #34D399;
   --color-danger: #EF4444;
 
-  /* Borders */
+  /* ---- Solid Borders ---- */
+  /* Replaced low-opacity borders with solid hex values to remove 
+     background blending and enforce a flat UI look. */
+  --color-border: #27272A;
+  --color-border-light: #3F3F46;
+  --color-border-accent: #157A46;
 
-  --color-border: rgba(255,255,255,.08);
-  --color-border-light: rgba(255,255,255,.12);
-
-
-  /* Radius */
-
+  /* ---- Radius ---- */
   --radius-xs: 0.25rem;
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
@@ -53,373 +54,155 @@
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
 
+  /* ---- Shadows ---- */
+  /* Heavily tightened. Removed the green glow entirely. */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.8);
 
-  /* Shadows */
-
-  --shadow-soft:
-    0 8px 24px rgba(15,23,42,.06);
-
-  --shadow-card:
-    0 20px 45px rgba(15,23,42,.08);
-
-  --shadow-gold:
-    0 10px 35px rgba(201,162,39,.25);
-
-  --shadow-navbar:
-    0 8px 20px rgba(15,23,42,.05);
-
-
-  /* Spacing */
-
+  /* ---- Spacing ---- */
   --spacing-section: 7rem;
   --spacing-container: 80rem;
 
-
-  /* Transition */
-
+  /* ---- Transition ---- */
   --ease-premium: cubic-bezier(.16,1,.3,1);
-
 }
 
-  @layer base {
+@layer base {
 
-  html{
-      scroll-behavior:smooth;
+  html {
+    scroll-behavior: smooth;
   }
 
-  body{
-
-      font-family:var(--font-body);
-
-      background:var(--color-background);
-
-      color:var(--color-text);
-
-      overflow-x:hidden;
-
+  body {
+    font-family: var(--font-body);
+    background: var(--color-background);
+    color: var(--color-text);
+    overflow-x: hidden;
   }
 
-  h1,h2,h3,h4,h5,h6{
-
-      font-family:var(--font-heading);
-
-      color:var(--color-primary);
-
-      letter-spacing:-.04em;
-
-      font-weight:800;
-
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    letter-spacing: -.04em;
+    font-weight: 800;
   }
 
-  section{
-
-      padding-block:var(--spacing-section);
-
+  section {
+    padding-block: var(--spacing-section);
   }
 
-  ::selection{
-
-      background:var(--color-accent-light);
-
-      color:white;
-
+  ::selection {
+    background: var(--color-accent-light);
+    color: var(--color-white);
   }
 
+  :focus-visible {
+    outline: 2px solid var(--color-accent-light);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
 @layer components {
 
-.container-premium{
+  .container-premium {
     @apply mx-auto max-w-7xl px-6 lg:px-10;
+  }
+
+  /* Primary CTA — Solid background, removed glow shadow */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl px-7 py-4
+      font-semibold text-white transition-all duration-300;
+    background: var(--color-accent-light);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    background: var(--color-accent-hover);
+  }
+
+  .btn-primary:focus-visible {
+    outline-offset: 4px;
+  }
+
+  /* Secondary CTA — Stark outline, transparent background */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl px-7 py-4
+      transition-all duration-300;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    background: transparent;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-accent-light);
+    background: var(--color-surface);
+  }
+
+  /* Cards — Flat UI approach. Neutral border by default, accent border on hover. */
+  .card-premium {
+    @apply rounded-3xl transition-all duration-300;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .card-premium:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent-light);
+    box-shadow: var(--shadow-card);
+  }
 }
 
-.btn-primary{
-
-    @apply inline-flex
-    items-center
-    rounded-xl
-    px-7
-    py-4
-    font-semibold
-    text-white
-    transition-all
-    duration-300;
-
-    background:linear-gradient(
-        135deg,
-        var(--color-accent),
-        var(--color-accent-light)
-    );
-
+@theme {
+  /* Stripped out float, marquee, and gradient animations */
+  --animate-fade-up: fade-up .8s cubic-bezier(.16,1,.3,1) both;
+  --animate-fade:    fade .7s ease both;
+  --animate-scale:   scale .7s cubic-bezier(.16,1,.3,1) both;
+  --animate-slide:   slide .8s cubic-bezier(.16,1,.3,1) both;
 }
 
-.btn-primary:hover{
-
-    transform:translateY(-3px);
-
-    background:linear-gradient(
-        135deg,
-        var(--color-accent-light),
-        var(--color-accent-hover)
-    );
-
-    box-shadow:0 16px 40px rgba(0,107,59,.35);
-
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-.btn-secondary{
-
-    @apply rounded-xl
-    px-7
-    py-4
-    transition-all
-    duration-300;
-
-    border:1px solid var(--color-border-light);
-
-    color:var(--color-primary);
-
-    background:rgba(255,255,255,.03);
-
+@keyframes fade {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-.btn-secondary:hover{
-
-    border-color:var(--color-accent-light);
-
-    color:white;
-
-    background:rgba(0,107,59,.18);
-
+@keyframes scale {
+  0%   { opacity: 0; transform: scale(.94); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-.card-premium{
-
-    @apply rounded-3xl
-    transition-all
-    duration-500;
-
-    background:var(--color-surface);
-
-    border:1px solid var(--color-border);
-
-    box-shadow:
-
-        0 25px 60px rgba(0,0,0,.28);
-
-}
-
-.card-premium:hover{
-
-    transform:translateY(-8px);
-
-    border-color:rgba(0,107,59,.45);
-
-    box-shadow:
-
-        0 35px 80px rgba(0,107,59,.18);
-
-}
-
-.glass{
-
-    backdrop-filter:blur(24px);
-
-    background:rgba(16,33,26,.72);
-
-    border:1px solid rgba(255,255,255,.06);
-
-}
-}
-
-@theme{
-
---animate-fade-up:
-fade-up .8s cubic-bezier(.16,1,.3,1) both;
-
---animate-fade:
-fade .7s ease both;
-
---animate-scale:
-scale .7s cubic-bezier(.16,1,.3,1) both;
-
---animate-slide:
-slide .8s cubic-bezier(.16,1,.3,1) both;
-
---animate-float:
-float 5s ease-in-out infinite;
-
---animate-marquee:
-marquee 28s linear infinite;
-
---animate-gradient:
-gradientMove 12s ease infinite;
-
-}
-
-@keyframes fade-up{
-
-0%{
-opacity:0;
-transform:translateY(40px);
-}
-
-100%{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-@keyframes fade{
-
-0%{
-opacity:0;
-}
-
-100%{
-opacity:1;
-}
-
-}
-
-@keyframes scale{
-
-0%{
-opacity:0;
-transform:scale(.94);
-}
-
-100%{
-opacity:1;
-transform:scale(1);
-}
-
-}
-
-@keyframes slide{
-
-0%{
-opacity:0;
-transform:translateX(-60px);
-}
-
-100%{
-opacity:1;
-transform:translateX(0);
-}
-
-}
-
-@keyframes float{
-
-0%,100%{
-transform:translateY(0);
-}
-
-50%{
-transform:translateY(-15px);
-}
-
-}
-
-@keyframes marquee{
-
-0%{
-transform:translateX(0);
-}
-
-100%{
-transform:translateX(-50%);
-}
-
-}
-
-@keyframes gradientMove{
-
-0%{
-background-position:0% 50%;
-}
-
-50%{
-background-position:100% 50%;
-}
-
-100%{
-background-position:0% 50%;
-}
-
+@keyframes slide {
+  0%   { opacity: 0; transform: translateX(-60px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 @layer utilities {
 
-.text-gradient{
-
-background:linear-gradient(
-
-135deg,
-
-#ffffff,
-
-#8FE3B2,
-
-var(--color-accent-light)
-
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
-}
-
-.bg-grid{
-
-background-image:
-
-linear-gradient(
-rgba(255,255,255,.03) 1px,
-transparent 1px),
-
-linear-gradient(
-90deg,
-rgba(255,255,255,.03) 1px,
-transparent 1px);
-
-background-size:48px 48px;
-
-}
-
-.bg-radial{
-
-background:
-
-radial-gradient(
-
-circle at top,
-
-rgba(0,107,59,.22),
-
-transparent 65%
-
-);
-
-}
-
-.hero-overlay{
-
-background:
-
-linear-gradient(
-
-135deg,
-
-rgba(7,19,14,.96),
-
-rgba(7,19,14,.82),
-
-rgba(0,69,38,.72)
-
-);
-
-}
-
+  /* All gradient and radial classes have been deleted. */
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
 }
