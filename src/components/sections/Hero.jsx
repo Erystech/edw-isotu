@@ -31,13 +31,8 @@ export default function Hero({
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
       />
-      {/* 
-        Refactored Overlay:
-        Removed the custom class and enforced a strict dark mode mask 
-        using your primary background token at 80% opacity.
-      */}
       <div 
-        className="absolute inset-0 bg-[var(--color-background)]/80" 
+        className="absolute inset-0 bg-[var(--color-background)]/50" 
         aria-hidden="true" 
       />
 

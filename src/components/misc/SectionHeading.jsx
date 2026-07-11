@@ -3,38 +3,32 @@ import Label from '../typography/Label';
 import Heading from '../typography/Heading';
 import Paragraph from '../typography/Paragraph';
 
-/**
- * SectionHeading
- * The eyebrow + heading + supporting copy pattern reused at the
- * top of every homepage/page section.
- *
- * @param {'left'|'center'} align
- */
 export default function SectionHeading({
   eyebrow,
   title,
   description,
   align = 'left',
+  invert = false,
   className,
   ...props
 }) {
   return (
     <div
-      className={cn(
-        'max-w-2xl',
-        align === 'center' && 'mx-auto text-center',
-        className
-      )}
+      className={cn('max-w-2xl', align === 'center' && 'mx-auto text-center', className)}
       {...props}
     >
-      {eyebrow && <Label as="p" className="text-[var(--color-accent-light)]">{eyebrow}</Label>}
-      
-      <Heading size="lg" className="mt-3 text-[var(--color-primary)]">
+      {eyebrow && (
+        <Label as="p" className={invert ? 'text-white/80' : 'text-[var(--color-accent-light)]'}>
+          {eyebrow}
+        </Label>
+      )}
+
+      <Heading size="lg" className={cn('mt-3', invert ? 'text-white' : 'text-[var(--color-primary)]')}>
         {title}
       </Heading>
-      
+
       {description && (
-        <Paragraph size="lg" className="mt-4 text-[var(--color-text-muted)]">
+        <Paragraph size="lg" className={cn('mt-4', invert ? 'text-white/70' : 'text-[var(--color-text-muted)]')}>
           {description}
         </Paragraph>
       )}
