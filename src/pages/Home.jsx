@@ -1,5 +1,4 @@
 import { Compass, Users, TrendingUp } from 'lucide-react';
-
 import { Navbar, Footer, Section } from '../components/layout';
 import { Divider } from '../components/ui';
 import {
@@ -15,6 +14,7 @@ import { Hero, AboutPreview } from '../components/sections';
 import IsotuPotrait from '../assets/images/edisotu.webp'
 import HeroImg from '../assets/images/isotu-banner.webp'
 import { clientLogos } from '../assets/logos';
+import { VideoEmbed } from '../components/blocks';
 // Placeholder imagery — swap for real photography/video assets once available.
 const HERO_IMAGE = HeroImg
 const PORTRAIT_IMAGE = IsotuPotrait;
@@ -191,18 +191,10 @@ function Home() {
           className="mx-auto text-center"
         />
         <div className="mx-auto mt-10 max-w-3xl">
-          {/* Responsive iframe wrapper */}
-          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-[var(--color-border)]">
-            <iframe 
-              className="h-full w-full"
-              src="https://www.youtube.com/embed/vtnS37ua4Vo?si=QbkIQ3ima9WCpHlQ" 
-              title="YouTube video player" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerPolicy="strict-origin-when-cross-origin" 
-              allowFullScreen
-            ></iframe>
-          </div>
+          <VideoEmbed
+            src="https://www.youtube.com/embed/vtnS37ua4Vo?si=QbkIQ3ima9WCpHlQ"
+            title="Edwin Isotu keynote reel"
+          />
         </div>
       </Section>
 
