@@ -15,13 +15,12 @@ import IsotuPotrait from '../assets/images/edisotu.webp'
 import HeroImg from '../assets/images/isotu-banner.webp'
 import { clientLogos } from '../assets/logos';
 import { VideoEmbed } from '../components/blocks';
-// Placeholder imagery — swap for real photography/video assets once available.
+import { pressLogos} from '../assets/logos';
 const HERO_IMAGE = HeroImg
 const PORTRAIT_IMAGE = IsotuPotrait;
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
 const BLOG_THUMB = 'https://placehold.co/800x450/16324F/FFFFFF?text=Insight';
 const CLIENT_LOGO = 'https://placehold.co/160x40/transparent/6B7280?text=Client';
-const PRESS_LOGO = 'https://placehold.co/140x32/transparent/111827?text=Press';
 
 const SPEAKING_TOPICS = [
   {
@@ -246,7 +245,7 @@ function Home() {
         </p>
         <LogoStrip
           className="mt-8"
-          logos={[1, 2, 3, 4].map((i) => ({ src: PRESS_LOGO, alt: `Press outlet ${i}` }))}
+          logos={pressLogos}
         />
       </Section>
 

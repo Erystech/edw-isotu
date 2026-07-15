@@ -10,6 +10,9 @@ import UnitedNations from '../logos/united-nations.svg'
 import UniversityOfIbadan from '../logos/university-of-ibadan.png'
 import WorldBank from '../logos/World_Bank.svg'
 import WHO from '../logos/world-health-organization.svg'
+import CSR from '../logos/CSR.svg'
+import Leadership from '../logos/leadership.svg'
+import NewsAgency from '../logos/News-agency.svg'
 
 
 export const clientLogos = [
@@ -24,5 +27,12 @@ export const clientLogos = [
     { src: UnitedNations, alt: 'United Nations'},
     { src: UniversityOfIbadan, alt: 'University of Ibadan'},
     { src: WorldBank, alt: 'World Bank'},
-    { src: WHO, alt: 'World Health Organization'}
+    { src: WHO, alt: 'World Health Organization'},
+]
+
+export const pressLogos = [
+    { src: CSR, alt: 'CSR Reporters'},
+    { src: Leadership, alt: 'Leadership News'},
+    { src: NewsAgency, alt: 'News Agency Of Nigeria'},
+    { src: WHO, alt: 'World Health Organization'},
 ]
