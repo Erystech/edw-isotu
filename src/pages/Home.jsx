@@ -16,6 +16,11 @@ import HeroImg from '../assets/images/isotu-banner.webp'
 import { clientLogos } from '../assets/logos';
 import { VideoEmbed } from '../components/blocks';
 import { pressLogos} from '../assets/logos';
+import { TESTIMONIALS } from '../assets/images/testimonials';
+import TestimonialCarousel from '../components/misc/TestimonialCarousel';
+
+
+
 const HERO_IMAGE = HeroImg
 const PORTRAIT_IMAGE = IsotuPotrait;
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
@@ -55,23 +60,6 @@ const BOOKS = [
   {
     title: 'The Trust Ledger',
     tagline: 'What teams actually owe each other to move fast.',
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    quote:
-      "Edwin didn't just speak at our offsite \u2014 he changed how our leadership team makes decisions.",
-    name: 'Amara Cole',
-    role: 'VP People',
-    company: 'Northbridge',
-  },
-  {
-    quote:
-      'Our regional managers still quote his framework a year later. That almost never happens with a keynote.',
-    name: 'Priya Shah',
-    role: 'Chief of Staff',
-    company: 'Solborne',
   },
 ];
 
@@ -223,20 +211,9 @@ function Home() {
           <StatsCard invert value={98} suffix="%" label="Would rebook" />
         </div>
       </Section>
-
       <Section>
         <SectionHeading eyebrow="Testimonials" title="What leaders say afterward" />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          <Quote
-            cite="\u2014 Daniel Reyes, CEO, Fenwick Group"
-            className="rounded-3xl border border-[var(--color-border)] bg-white p-8 shadow-[var(--shadow-soft)] md:col-span-1"
-          >
-            The single best keynote our company has hosted in a decade.
-          </Quote>
-          {TESTIMONIALS.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} {...testimonial} />
-          ))}
-        </div>
+        <TestimonialCarousel testimonials={TESTIMONIALS} />
       </Section>
 
       <Section tone="muted">
