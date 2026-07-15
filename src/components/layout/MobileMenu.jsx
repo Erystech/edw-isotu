@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react';
-import { X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { X, ChevronDown } from 'lucide-react';
 import Button from '../ui/Button';
 
 export default function MobileMenu({ id, open, onClose, links }) {
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
+  const [expanded, setExpanded] = useState({});
 
   useEffect(() => {
     if (!open) return;
@@ -50,25 +51,23 @@ export default function MobileMenu({ id, open, onClose, links }) {
     };
   }, [open, onClose]);
 
+  const toggleExpand = (label) => {
+    setExpanded((prev) => ({
+      ...prev,
+      [label]: !prev[label]
+    }));
+  };
+
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-[60] lg:hidden" role="dialog" aria-modal="true" id={id}>
-      {/* 
-        Refactored Backdrop: 
-        Swapped primary (white) for background (black) to reduce glare and properly dim the UI behind the menu.
-      */}
       <button
         type="button"
         aria-label="Close menu"
         className="absolute inset-0 bg-[var(--color-background)]/80 backdrop-blur-sm"
         onClick={onClose}
       />
-
-      {/* 
-        Refactored Panel: 
-        Swapped hardcoded bg-white for your design system's bg-[var(--color-surface-elevated)] to ensure text legibility.
-      */}
       <div
         ref={panelRef}
         className="animate-slide absolute inset-y-0 right-0 flex w-[85%] max-w-sm flex-col bg-[var(--color-surface-elevated)] border-l border-[var(--color-border)] px-6 py-6 shadow-[var(--shadow-card)]"
@@ -89,18 +88,47 @@ export default function MobileMenu({ id, open, onClose, links }) {
 
         <ul className="flex flex-col gap-1">
           {links.map((link) => (
-            <li key={link.href}>
-              {/* 
-                Refactored Hover State: 
-                Changed hover background to var(--color-surface) for a subtle interaction that doesn't clash with the elevated surface.
-              */}
-              <a
-                href={link.href}
-                onClick={onClose}
-                className="block rounded-lg px-3 py-3 text-base font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]"
-              >
-                {link.label}
-              </a>
+            <li key={link.label}>
+              {link.subLinks ? (
+                <>
+                  <button
+                    onClick={() => toggleExpand(link.label)}
+                    aria-expanded={expanded[link.label] || false}
+                    className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]"
+                  >
+                    {link.label}
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-200 ${
+                        expanded[link.label] ? 'rotate-180 text-[var(--color-accent-light)]' : 'text-[var(--color-text-muted)]'
+                      }`}
+                    />
+                  </button>
+                  {expanded[link.label] && (
+                    <ul className="mt-1 flex flex-col gap-1 pl-4">
+                      {link.subLinks.map((sub) => (
+                        <li key={sub.href}>
+                          <a
+                            href={sub.href}
+                            onClick={onClose}
+                            className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]"
+                          >
+                            {sub.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
+              ) : (
+                <a
+                  href={link.href}
+                  onClick={onClose}
+                  className="block rounded-lg px-3 py-3 text-base font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]"
+                >
+                  {link.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
