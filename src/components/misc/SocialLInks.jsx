@@ -58,7 +58,7 @@ export default function SocialLinks({ links = DEFAULT_LINKS, className, ...props
           aria-label={label} //[cite: 2]
           className="grid h-11 w-11 place-items-center rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent-light)] hover:text-[var(--color-accent-light)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent-light)] focus-visible:outline-offset-2" //[cite: 2]
         >
-          <Icon size={58} aria-hidden="true" /> 
+          <Icon size={16} aria-hidden="true" /> 
         </a>
       ))}
     </div>

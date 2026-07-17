@@ -1,6 +1,6 @@
-// import { Linkedin, Youtube, Instagram, Twitter, Mail } from 'lucide-react';
 import Container from './Container';
 import Divider from '../ui/Divider';
+import { SocialLinks } from '../misc';
 
 const COLUMNS = [
   {
@@ -28,14 +28,6 @@ const COLUMNS = [
     ],
   },
 ];
-
-// const SOCIALS = [
-//   { label: 'LinkedIn', href: '#', icon: Linkedin },
-//   { label: 'X (Twitter)', href: '#', icon: Twitter },
-//   { label: 'Instagram', href: '#', icon: Instagram },
-//   { label: 'YouTube', href: '#', icon: Youtube },
-// ];
-
 export default function Footer() {
   return (
     <footer className="bg-[var(--color-background-alt)] border-t border-[var(--color-border)] text-[var(--color-text-muted)]">
@@ -89,23 +81,7 @@ export default function Footer() {
           <p className="text-xs text-[var(--color-text-muted)]">
             © {new Date().getFullYear()} Edwin Isotu. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            {/* 
-              Refactored Socials (Prepared for uncommenting):
-              Updated focus and hover outlines to use accent-light to ensure 
-              visibility against the dark background.
-            */}
-            {/* {SOCIALS.map(({ label, href, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className="grid h-9 w-9 place-items-center rounded-full border border-[var(--color-border-light)] text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent-light)] hover:text-[var(--color-accent-light)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent-light)] focus-visible:outline-offset-2"
-              >
-                <Icon size={16} aria-hidden="true" />
-              </a>
-            ))} */}
-          </div>
+          <SocialLinks />
         </div>
       </Container>
     </footer>
