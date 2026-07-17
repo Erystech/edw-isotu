@@ -1,5 +1,5 @@
 import { Navbar, Footer, Section } from '../components/layout';
-import { SectionHeading, NewsletterSignup, } from '../components/misc';
+import { SectionHeading, NewsletterSignup, SocialLinks } from '../components/misc';
 import { Hero } from '../components/sections';
 import { BlogCard, MediaCategoryCard } from '../components/cards';
 import QuoteCarousel from '../components/misc/QuoteCarousel';
@@ -127,9 +127,9 @@ function Insights() {
           title="Follow the conversation"
           className="mx-auto text-center"
         />
-        {/* <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center">
           <SocialLinks />
-        </div> */}
+        </div>
       </Section>
 
       <Section>

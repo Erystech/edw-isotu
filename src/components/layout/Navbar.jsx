@@ -44,7 +44,7 @@ export default function Navbar({ transparent = true }) {
     >
       <Container>
         <nav
-          className="flex h-20 items-center justify-between"
+          className="flex h-30 items-center justify-between"
           aria-label="Primary"
         >
           <a
@@ -52,9 +52,9 @@ export default function Navbar({ transparent = true }) {
             className="flex items-center transition-opacity hover:opacity-80"
           >
             <img 
-              src='/Isotu-logo.svg'
+              src='/isotu-logo-n.png'
               alt="Edwin Isotu" 
-              className="h-9 w-auto object-contain"
+              className="h-11 w-auto object-contain"
             />
           </a>
 
