@@ -5,3 +5,4 @@ export { default as VideoCard } from './VideoCard';
 export { default as ServiceCard } from './ServiceCard';
 export { default as BlogCard } from './BlogCard';
 export { default as StatsCard } from './StatsCard';
+export { default as MentorshipHubCard } from './MentorshipHubCard';

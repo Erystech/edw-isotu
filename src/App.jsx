@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Speaking from './pages/Speaking';
 import Books from './pages/Books';
-import { ExecutiveMasterclass } from './pages/mentorship';
+import { ExecutiveMasterclass, ClearLiftAfricaMentorship } from './pages/mentorship';
 
 
 function App() {
@@ -14,7 +14,6 @@ function App() {
       <Route path="/speaking" element={<Speaking />} />
       <Route path="/books" element={<Books />} />
       
-      {/* Nested Mentorship Routes */}
       <Route path="/mentorship">
         <Route 
           index 
@@ -24,10 +23,10 @@ function App() {
           path="executive-masterclass" 
           element={<ExecutiveMasterclass />} 
         />
-        {/* <Route 
-          path="clearlift-africa-mentorship" 
+        <Route 
+          path="clearlift-africa"
           element={<ClearLiftAfricaMentorship />} 
-        /> */}
+        /> 
       </Route>
     </Routes>
   );
