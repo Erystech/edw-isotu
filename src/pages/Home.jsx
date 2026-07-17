@@ -234,7 +234,7 @@ function Home() {
         />
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {ARTICLES.map((article) => (
-            <BlogCard key={article.title} image={BLOG_THUMB} href="/insights" {...article} />
+            <BlogCard key={article.title} image={BLOG_THUMB} href="/articles" {...article} />
           ))}
         </div>
       </Section>

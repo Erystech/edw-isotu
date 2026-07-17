@@ -42,7 +42,7 @@ const CATEGORIES = [
     image: ArticleImg,
     title: 'Articles & Blog',
     description: 'Short, specific writing on execution and public health.',
-    href: '#articles',
+    href: '/articles',
   },
 ];
 
@@ -114,10 +114,9 @@ function Insights() {
           description="Short, specific writing on leadership and execution."
         />
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {ARTICLES.map((article) => (
-            // TODO: link to real article detail pages once they exist.
-            <BlogCard key={article.title} image={BLOG_THUMB} href="#articles" {...article} />
-          ))}
+           {ARTICLES.map((article) => (
+              <BlogCard key={article.title} image={BLOG_THUMB} href="/articles" {...article} />
+            ))}
         </div>
       </Section>
 

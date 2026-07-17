@@ -8,3 +8,4 @@ export { default as StatsCard } from './StatsCard';
 export { default as MentorshipHubCard } from './MentorshipHubCard';
 export { default as QuoteCard } from './QuoteCard';
 export { default as MediaCategoryCard } from './MediaCategoryCard';
+export { default as ArticleCard } from './ArticleCard';

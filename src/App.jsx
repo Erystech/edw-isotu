@@ -3,8 +3,11 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Speaking from './pages/Speaking';
 import Books from './pages/Books';
+import Articles from './pages/Articles';
+import ArticleDetail from './pages/ArticleDetail';
 import { ExecutiveMasterclass, ClearLiftAfricaMentorship } from './pages/mentorship';
 import Insights from './pages/Insights';
+
 
 function App() {
   return (
@@ -13,21 +16,23 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/speaking" element={<Speaking />} />
       <Route path="/books" element={<Books />} />
+      <Route path="/articles" element={<Articles />} />
+      <Route path="/articles/:slug" element={<ArticleDetail />} />
       <Route path="/insights" element={<Insights />} />
-      
+
       <Route path="/mentorship">
-        <Route 
-          index 
-          element={<Navigate to="/mentorship/executive-masterclass" replace />} 
+        <Route
+          index
+          element={<Navigate to="/mentorship/executive-masterclass" replace />}
         />
-        <Route 
-          path="executive-masterclass" 
-          element={<ExecutiveMasterclass />} 
+        <Route
+          path="executive-masterclass"
+          element={<ExecutiveMasterclass />}
         />
-        <Route 
+        <Route
           path="clearlift-africa"
-          element={<ClearLiftAfricaMentorship />} 
-        /> 
+          element={<ClearLiftAfricaMentorship />}
+        />
       </Route>
     </Routes>
   );
