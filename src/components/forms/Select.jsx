@@ -8,7 +8,7 @@ const Select = forwardRef(function Select({ className, children, ...props }, ref
       <select
         ref={ref}
         className={cn(
-          'w-full appearance-none rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 pr-10 text-sm text-[var(--color-text)]',
+          'w-full appearance-none rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 pr-10 text-sm text-[var(--color-text)]',
           'transition-colors',
           'focus:border-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2',
           'aria-[invalid=true]:border-[var(--color-danger)]',

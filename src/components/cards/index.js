@@ -6,3 +6,5 @@ export { default as ServiceCard } from './ServiceCard';
 export { default as BlogCard } from './BlogCard';
 export { default as StatsCard } from './StatsCard';
 export { default as MentorshipHubCard } from './MentorshipHubCard';
+export { default as QuoteCard } from './QuoteCard';
+export { default as MediaCategoryCard } from './MediaCategoryCard';
