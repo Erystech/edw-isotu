@@ -5,27 +5,23 @@ import {
   SpeakerCard,
   TestimonialCard,
   BookCard,
-  BlogCard,
+  ArticleCard,
   StatsCard,
 } from '../components/cards';
 import { Quote } from '../components/typography';
 import { SectionHeading, CTABanner, LogoStrip, Accordion } from '../components/misc';
 import { Hero, AboutPreview } from '../components/sections';
-import IsotuPotrait from '../assets/images/edisotu.webp'
-import HeroImg from '../assets/images/isotu-banner.webp'
-import { clientLogos } from '../assets/logos';
+import IsotuPotrait from '../assets/images/edisotu.webp';
+import HeroImg from '../assets/images/isotu-banner.webp';
+import { clientLogos, pressLogos } from '../assets/logos';
 import { VideoEmbed } from '../components/blocks';
-import { pressLogos} from '../assets/logos';
 import { TESTIMONIALS } from '../assets/images/testimonials';
 import TestimonialCarousel from '../components/misc/TestimonialCarousel';
+import { articles } from '../components/data/articles';
 
-
-
-const HERO_IMAGE = HeroImg
+const HERO_IMAGE = HeroImg;
 const PORTRAIT_IMAGE = IsotuPotrait;
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
-const BLOG_THUMB = 'https://placehold.co/800x450/16324F/FFFFFF?text=Insight';
-const CLIENT_LOGO = 'https://placehold.co/160x40/transparent/6B7280?text=Client';
 
 const SPEAKING_TOPICS = [
   {
@@ -63,30 +59,6 @@ const BOOKS = [
   },
 ];
 
-const ARTICLES = [
-  {
-    category: 'Leadership',
-    title: 'Why most change initiatives stall at month three',
-    excerpt: 'The pattern shows up everywhere \u2014 and it\u2019s fixable.',
-    date: 'Jun 2026',
-    readTime: '6 min read',
-  },
-  {
-    category: 'Management',
-    title: 'The one-on-one question most managers skip',
-    excerpt: 'A single question that surfaces problems weeks earlier.',
-    date: 'May 2026',
-    readTime: '4 min read',
-  },
-  {
-    category: 'Feedback',
-    title: 'How to give feedback that actually lands',
-    excerpt: 'The delivery habit that determines whether advice sticks.',
-    date: 'Apr 2026',
-    readTime: '5 min read',
-  },
-];
-
 const FAQS = [
   {
     question: 'What is Edwin\u2019s typical booking lead time?',
@@ -109,6 +81,11 @@ const FAQS = [
       'Every keynote is adapted with industry-specific examples after a short discovery call with your team.',
   },
 ];
+
+// Dynamically grab the 3 most recent articles
+const RECENT_ARTICLES = [...articles]
+  .sort((a, b) => new Date(b.publishedDate) - new Date(a.publishedDate))
+  .slice(0, 3);
 
 function Home() {
   return (
@@ -133,10 +110,7 @@ function Home() {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
           Trusted by teams at
         </p>
-        <LogoStrip
-          className="mt-8"
-          logos={clientLogos}
-        />
+        <LogoStrip className="mt-8" logos={clientLogos} />
       </Section>
 
       <Divider className="mx-auto max-w-7xl" />
@@ -211,6 +185,7 @@ function Home() {
           <StatsCard invert value={98} suffix="%" label="Would rebook" />
         </div>
       </Section>
+
       <Section>
         <SectionHeading eyebrow="Testimonials" title="What leaders say afterward" />
         <TestimonialCarousel testimonials={TESTIMONIALS} />
@@ -220,10 +195,7 @@ function Home() {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
           As featured in
         </p>
-        <LogoStrip
-          className="mt-8"
-          logos={pressLogos}
-        />
+        <LogoStrip className="mt-8" logos={pressLogos} />
       </Section>
 
       <Section>
@@ -233,8 +205,8 @@ function Home() {
           description="Short, specific writing on leadership and execution."
         />
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {ARTICLES.map((article) => (
-            <BlogCard key={article.title} image={BLOG_THUMB} href="/articles" {...article} />
+          {RECENT_ARTICLES.map((article) => (
+            <ArticleCard key={article.slug} {...article} />
           ))}
         </div>
       </Section>

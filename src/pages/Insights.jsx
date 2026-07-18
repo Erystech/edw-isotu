@@ -1,17 +1,17 @@
 import { Navbar, Footer, Section } from '../components/layout';
 import { SectionHeading, NewsletterSignup, SocialLinks } from '../components/misc';
 import { Hero } from '../components/sections';
-import { BlogCard, MediaCategoryCard } from '../components/cards';
+import { ArticleCard, MediaCategoryCard } from '../components/cards';
 import QuoteCarousel from '../components/misc/QuoteCarousel';
 import { QUOTES } from '../components/data/Quotes';
 import HeroImg from '../assets/images/high-level-strategy.webp';
 import PodcastImg from '../assets/images/isotu-smile.webp';
 import InterviewImg from '../assets/images/int1.webp';
 import ArticleImg from '../assets/images/field-work-mobile.webp';
+import { articles } from '../components/data/articles';
 
 const HERO_IMAGE = HeroImg;
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
-const BLOG_THUMB = 'https://placehold.co/800x450/16324F/FFFFFF?text=Insight';
 
 // Sourced from the live site's /insights hub tiles.
 const PODCAST_URL = 'https://youtube.com/profIsotu';
@@ -46,32 +46,10 @@ const CATEGORIES = [
   },
 ];
 
-// Placeholder — duplicated from Home's featured-articles data until a
-// shared content source exists. Swap for real Insights-specific
-// articles (and centralize) during the content pass.
-const ARTICLES = [
-  {
-    category: 'Leadership',
-    title: 'Why most change initiatives stall at month three',
-    excerpt: 'The pattern shows up everywhere \u2014 and it\u2019s fixable.',
-    date: 'Jun 2026',
-    readTime: '6 min read',
-  },
-  {
-    category: 'Management',
-    title: 'The one-on-one question most managers skip',
-    excerpt: 'A single question that surfaces problems weeks earlier.',
-    date: 'May 2026',
-    readTime: '4 min read',
-  },
-  {
-    category: 'Feedback',
-    title: 'How to give feedback that actually lands',
-    excerpt: 'The delivery habit that determines whether advice sticks.',
-    date: 'Apr 2026',
-    readTime: '5 min read',
-  },
-];
+// Dynamically grab the 3 most recent articles
+const RECENT_ARTICLES = [...articles]
+  .sort((a, b) => new Date(b.publishedDate) - new Date(a.publishedDate))
+  .slice(0, 3);
 
 function Insights() {
   return (
@@ -114,8 +92,8 @@ function Insights() {
           description="Short, specific writing on leadership and execution."
         />
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-           {ARTICLES.map((article) => (
-              <BlogCard key={article.title} image={BLOG_THUMB} href="/articles" {...article} />
+           {RECENT_ARTICLES.map((article) => (
+              <ArticleCard key={article.slug} {...article} />
             ))}
         </div>
       </Section>

@@ -13,8 +13,7 @@ function ArticleDetail() {
   const { slug } = useParams();
   const article = getArticleBySlug(slug);
 
-  // Scroll to top on article navigation (e.g. clicking a related article
-  // while already on a detail page keeps the same route shape).
+  // Scroll to top on article navigation
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [slug]);
@@ -29,21 +28,10 @@ function ArticleDetail() {
     <>
       <Navbar transparent />
 
-      {/* Featured image hero */}
-      <section className="relative flex min-h-[70vh] items-end overflow-hidden lg:min-h-[80vh]">
-        <img
-          src={article.featuredImage}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div
-          className="absolute inset-0 bg-[var(--color-background)]/70"
-          aria-hidden="true"
-        />
-
-        <Container className="relative z-10 pb-14 pt-40 lg:pb-20 lg:pt-48">
+      {/* Text-first header (Image and overlays stripped) */}
+      <header>
+        <Container className="pb-14 pt-36 lg:pb-20 lg:pt-44">
           <Breadcrumb
-            invert
             items={[
               { label: 'Home', href: '/' },
               { label: 'Articles', href: '/articles' },
@@ -51,24 +39,24 @@ function ArticleDetail() {
             ]}
           />
 
-          <div className="mt-6 max-w-3xl">
+          <div className="mt-8 max-w-3xl">
             <Badge tone="accent">{article.category}</Badge>
 
-            <h1 className="mt-4 font-[var(--font-heading)] text-4xl font-extrabold leading-tight text-white lg:text-5xl">
+            <h1 className="mt-6 font-[var(--font-heading)] text-4xl font-extrabold leading-tight text-[var(--color-primary)] lg:text-5xl">
               {article.title}
             </h1>
 
-            <p className="mt-4 max-w-2xl text-lg text-white/75">
+            <p className="mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
               {article.subtitle}
             </p>
 
-            <Label as="p" className="mt-6 text-white/60 normal-case tracking-normal">
+            <Label as="p" className="mt-8 text-[var(--color-text-muted)] normal-case tracking-normal">
               {article.author} · {formatDate(article.publishedDate)} ·{' '}
               {article.readTime} min read
             </Label>
           </div>
         </Container>
-      </section>
+      </header>
 
       {/* Article body */}
       <Section>
