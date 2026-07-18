@@ -7,6 +7,7 @@ import Articles from './pages/Articles';
 import ArticleDetail from './pages/ArticleDetail';
 import { ExecutiveMasterclass, ClearLiftAfricaMentorship } from './pages/mentorship';
 import Insights from './pages/Insights';
+import Contact from './pages/Contact';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Route path="/articles" element={<Articles />} />
       <Route path="/articles/:slug" element={<ArticleDetail />} />
       <Route path="/insights" element={<Insights />} />
-
+      <Route path="/contact" element={<Contact />} />
       <Route path="/mentorship">
         <Route
           index
