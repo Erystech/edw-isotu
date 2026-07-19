@@ -1,4 +1,4 @@
-import { Navbar, Footer } from '../../components/layout';
+
 import {
   Hero,
   AGSModel,
@@ -18,8 +18,6 @@ import LeadershipImg from '../../assets/images/isotu-smile.webp';
 function ClearLiftAfricaMentorship() {
   return (
     <>
-      <Navbar transparent />
-
       <Hero />
       <AGSModel image={MentorshipHeroImg} />
       <HubGrid
@@ -34,8 +32,6 @@ function ClearLiftAfricaMentorship() {
       <HowToParticipate />
       <MentorRecruitment />
       <FAQ />
-
-      <Footer />
     </>
   );
 }

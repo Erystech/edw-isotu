@@ -1,4 +1,4 @@
-import { Navbar, Footer, Section } from '../components/layout';
+import { Section } from '../components/layout';
 import { Quote } from '../components/typography';
 import { SectionHeading, CTABanner } from '../components/misc';
 import { Hero } from '../components/sections';
@@ -55,7 +55,6 @@ const OTHER_BOOKS = [
 function Books() {
   return (
     <>
-      <Navbar transparent />
       <Section id="featured-book" className="mt-12">
         <FeaturedBook {...FEATURED_BOOK} />
       </Section>
@@ -73,7 +72,6 @@ function Books() {
         </div>
       </Section>
 
-      <Footer />
     </>
   );
 }

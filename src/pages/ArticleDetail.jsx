@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { Navbar, Footer, Section, Container } from '../components/layout';
+import { Section, Container } from '../components/layout';
 import { Breadcrumb, SectionHeading } from '../components/misc';
 import { Badge } from '../components/ui';
 import { Label } from '../components/typography';
@@ -26,7 +26,6 @@ function ArticleDetail() {
 
   return (
     <>
-      <Navbar transparent />
 
       {/* Text-first header (Image and overlays stripped) */}
       <header>
@@ -77,8 +76,6 @@ function ArticleDetail() {
           </div>
         </Section>
       )}
-
-      <Footer />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Navbar, Footer, Section } from '../../components/layout';
+import {Section } from '../../components/layout';
 import { CTABanner } from '../../components/misc';
 import {
   Hero,
@@ -10,8 +10,6 @@ import MasterclassImg from '../../assets/images/high-level-strategy.webp';
 function ExecutiveMasterclass() {
   return (
     <>
-      <Navbar transparent />
-
       <Hero />
       <Overview image={MasterclassImg} />
       <TargetAudience />
@@ -25,8 +23,6 @@ function ExecutiveMasterclass() {
           secondaryAction={{ label: 'Schedule a Consultation', href: '/contact' }}
         />
       </Section>
-
-      <Footer />
     </>
   );
 }

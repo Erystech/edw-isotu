@@ -1,6 +1,6 @@
 import { Mic2, Users2, MonitorPlay, PresentationIcon } from 'lucide-react';
 
-import { Navbar, Footer, Section } from '../components/layout';
+import { Section } from '../components/layout';
 import { SpeakerCard, TestimonialCard } from '../components/cards';
 import { Quote } from '../components/typography';
 import { SectionHeading, CTABanner } from '../components/misc';
@@ -112,7 +112,6 @@ const BOOKING_STEPS = [
 function Speaking() {
   return (
     <>
-      <Navbar transparent />
 
       <Hero
         title="KEYNOTE SPEAKING."
@@ -171,8 +170,6 @@ function Speaking() {
           />
         </div>
       </Section>
-
-      <Footer />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Navbar, Footer, Section } from '../components/layout';
+import { Section } from '../components/layout';
 import { SectionHeading } from '../components/misc';
 import { Accordion } from '../components/misc';
 import { Hero } from '../components/sections';
@@ -33,8 +33,6 @@ const FAQS = [
 function Contact() {
   return (
     <>
-      <Navbar transparent />
-
       <Hero
         eyebrow="Get in Touch"
         title="Let's start the conversation"
@@ -65,8 +63,6 @@ function Contact() {
           <Accordion items={FAQS} />
         </div>
       </Section>
-
-      <Footer />
     </>
   );
 }

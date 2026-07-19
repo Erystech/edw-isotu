@@ -1,4 +1,4 @@
-import { Navbar, Footer, Section } from '../components/layout';
+import { Section } from '../components/layout';
 import { SectionHeading, NewsletterSignup, SocialLinks } from '../components/misc';
 import { Hero } from '../components/sections';
 import { ArticleCard, MediaCategoryCard } from '../components/cards';
@@ -54,7 +54,6 @@ const RECENT_ARTICLES = [...articles]
 function Insights() {
   return (
     <>
-      <Navbar transparent />
 
       <Hero
         eyebrow="Insights"
@@ -113,7 +112,6 @@ function Insights() {
       <Section>
         <NewsletterSignup />
       </Section>
-      <Footer />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Navbar, Footer, Section } from '../components/layout';
+import { Section } from '../components/layout';
 import { StatsCard } from '../components/cards';
 import { Heading, Paragraph } from '../components/typography';
 import { SectionHeading, CTABanner } from '../components/misc';
@@ -90,8 +90,6 @@ const RESEARCH_AREAS = [
 function About() {
   return (
     <>
-      <Navbar transparent />
-
       <Hero
         title="BRIEF PROFILE"
         description="Two decades spent closing the gap between public health strategy and the people it's meant to serve."
@@ -232,8 +230,6 @@ function About() {
           secondaryAction={{ label: 'Read his speaking topics', href: '/speaking' }}
         />
       </Section>
-
-      <Footer />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { Compass, Users, TrendingUp } from 'lucide-react';
-import { Navbar, Footer, Section } from '../components/layout';
+import { Section } from '../components/layout';
 import { Divider } from '../components/ui';
 import {
   SpeakerCard,
@@ -90,7 +90,6 @@ const RECENT_ARTICLES = [...articles]
 function Home() {
   return (
     <>
-      <Navbar transparent />
 
       <Hero
         eyebrow="Keynote Speaker \u00b7 Author \u00b7 Advisor"
@@ -227,8 +226,6 @@ function Home() {
           secondaryAction={{ label: 'Download media kit', href: '/media' }}
         />
       </Section>
-
-      <Footer />
     </>
   );
 }
