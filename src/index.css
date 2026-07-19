@@ -68,6 +68,9 @@
   
   /* marquee animation*/
   --animate-marquee: marquee 30s linear infinite;
+
+  /* Shimmer Animation*/
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
 }
 
 @layer base {
@@ -159,9 +162,29 @@
   }
 
   .card-premium:hover {
-    transform: translateY(-4px);
-    border-color: var(--color-accent-light);
-    box-shadow: var(--shadow-card);
+      transform: translateY(-4px);
+      border-color: var(--color-accent-light);
+      box-shadow: var(--shadow-card);
+  }
+  .skeleton {
+    background: var(--color-surface);
+    background-image: linear-gradient(
+      90deg,
+      var(--color-surface)         0px,
+      var(--color-surface-elevated) 40%,
+      var(--color-surface)         80%
+    );
+    background-size: 600px 100%;
+    animation: var(--animate-shimmer);
+    border-radius: var(--radius-sm);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton {
+      animation: none;
+      background-image: none;
+      background: var(--color-surface-elevated);
+    }
   }
 }
 
@@ -195,6 +218,10 @@
 @keyframes marquee {
   0%   { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
+}
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
 }
 
 @layer utilities {
