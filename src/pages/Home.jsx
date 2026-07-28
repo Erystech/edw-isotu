@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Compass, Users, TrendingUp } from 'lucide-react';
 import { Section } from '../components/layout';
 import { Divider } from '../components/ui';
@@ -11,6 +12,7 @@ import {
 import { Quote } from '../components/typography';
 import { SectionHeading, CTABanner, LogoStrip, Accordion } from '../components/misc';
 import { Hero, AboutPreview } from '../components/sections';
+import { LoadingState } from '../components/states';
 import IsotuPotrait from '../assets/images/edisotu.webp';
 import HeroImg from '../assets/images/isotu-banner.webp';
 import { clientLogos, pressLogos } from '../assets/logos';
@@ -88,10 +90,20 @@ const RECENT_ARTICLES = [...articles]
   .slice(0, 3);
 
 function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulating data loading for the homepage
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-
       <Hero
+        isLoading={isLoading}
         eyebrow="Keynote Speaker \u00b7 Author \u00b7 Advisor"
         title="Momentum is built, one decision at a time."
         description="Edwin Isotu helps leadership teams close the gap between strategy and execution \u2014 turning the plan on the slide into momentum on the ground."
@@ -164,11 +176,17 @@ function Home() {
           title="Ideas that outlast the keynote"
           description="Three books on turning strategy into daily execution."
         />
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {BOOKS.map((book) => (
-            <BookCard key={book.title} cover={BOOK_COVER} purchaseHref="/books" {...book} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="mt-10">
+            <LoadingState variant="cards" count={3} />
+          </div>
+        ) : (
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {BOOKS.map((book) => (
+              <BookCard key={book.title} cover={BOOK_COVER} purchaseHref="/books" {...book} />
+            ))}
+          </div>
+        )}
       </Section>
 
       <Section tone="primary">
@@ -178,11 +196,17 @@ function Home() {
           title="The numbers behind the stage time"
           description="Every keynote is measured the same way Edwin asks teams to measure their own work."
         />
-        <div className="mt-12 grid gap-8 sm:grid-cols-3">
-          <StatsCard invert value={250} suffix="+" label="Keynotes delivered" />
-          <StatsCard invert value={40} suffix="k+" label="Leaders trained" />
-          <StatsCard invert value={98} suffix="%" label="Would rebook" />
-        </div>
+        {isLoading ? (
+          <div className="mt-12">
+            <LoadingState variant="stats" />
+          </div>
+        ) : (
+          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+            <StatsCard invert value={250} suffix="+" label="Keynotes delivered" />
+            <StatsCard invert value={40} suffix="k+" label="Leaders trained" />
+            <StatsCard invert value={98} suffix="%" label="Would rebook" />
+          </div>
+        )}
       </Section>
 
       <Section>
@@ -203,11 +227,17 @@ function Home() {
           title="Latest articles"
           description="Short, specific writing on leadership and execution."
         />
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {RECENT_ARTICLES.map((article) => (
-            <ArticleCard key={article.slug} {...article} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="mt-10">
+            <LoadingState variant="cards" count={3} />
+          </div>
+        ) : (
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {RECENT_ARTICLES.map((article) => (
+              <ArticleCard key={article.slug} {...article} />
+            ))}
+          </div>
+        )}
       </Section>
 
       <Section tone="muted">

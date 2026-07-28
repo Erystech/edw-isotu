@@ -1,5 +1,6 @@
 import { cn } from '../../../lib/cn';
 import ArticleCard from '../../cards/ArticleCard';
+import { EmptyState } from '../../states';
 
 /**
  * ArticleGrid
@@ -9,7 +10,7 @@ import ArticleCard from '../../cards/ArticleCard';
  * it doesn't assume how many articles it's given.
  */
 export default function ArticleGrid({ articles = [], className, ...props }) {
-  if (!articles.length) return null;
+  if (!articles.length) return <EmptyState variant="articles" />;
 
   return (
     <div

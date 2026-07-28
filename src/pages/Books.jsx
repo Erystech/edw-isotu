@@ -1,12 +1,10 @@
+import { useState, useEffect } from 'react';
 import { Section } from '../components/layout';
-import { Quote } from '../components/typography';
-import { SectionHeading, CTABanner } from '../components/misc';
-import { Hero } from '../components/sections';
-import { BookCard, TestimonialCard } from '../components/cards';
+import { SectionHeading } from '../components/misc';
+import { BookCard } from '../components/cards';
 import { FeaturedBook } from '../components/sections/books';
+import { LoadingState, EmptyState } from '../components/states';
 
-// Placeholder imagery/content — swap for the real title, cover art, and
-// retailer links once available.
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
 
 const FEATURED_BOOK = {
@@ -26,10 +24,7 @@ const FEATURED_BOOK = {
     { label: 'Publisher', value: 'Northbridge Press' },
   ],
   purchaseLinks: [
-    { label: 'Amazon', href: '#', primary: true },
-    { label: 'Barnes & Noble', href: '#' },
-    { label: 'Apple Books', href: '#' },
-    { label: 'Bookshop.org', href: '#' },
+    { label: 'Bookshop.org', href: '#', primary: true  },
   ],
 };
 
@@ -53,6 +48,16 @@ const OTHER_BOOKS = [
 ];
 
 function Books() {
+  const [books, setBooks] = useState(null);
+
+  useEffect(() => {
+    // Simulating data fetch for the grid
+    const timer = setTimeout(() => {
+      setBooks(OTHER_BOOKS);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Section id="featured-book" className="mt-12">
@@ -65,13 +70,23 @@ function Books() {
           title="The rest of the collection"
           description="Each book stands alone — pick the one that matches the problem in front of you."
         />
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {OTHER_BOOKS.map((book) => (
-            <BookCard key={book.title} purchaseHref="#" {...book} />
-          ))}
-        </div>
+        
+        {books === null ? (
+          <div className="mt-10">
+            <LoadingState variant="cards" count={3} />
+          </div>
+        ) : books.length === 0 ? (
+          <div className="mt-10">
+            <EmptyState variant="books" />
+          </div>
+        ) : (
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {books.map((book) => (
+              <BookCard key={book.title} purchaseHref="#" {...book} />
+            ))}
+          </div>
+        )}
       </Section>
-
     </>
   );
 }

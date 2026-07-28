@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { Section, Container } from '../components/layout';
 import { Breadcrumb, SectionHeading } from '../components/misc';
@@ -6,27 +6,51 @@ import { Badge } from '../components/ui';
 import { Label } from '../components/typography';
 import { ArticleContent } from '../components/blocks';
 import { ArticleGrid } from '../components/sections/articles';
+import { LoadingState } from '../components/states';
 import { getArticleBySlug, getRelatedArticles } from '../components/data/articles';
 import { formatDate } from '../lib/formatDate';
 
 function ArticleDetail() {
   const { slug } = useParams();
-  const article = getArticleBySlug(slug);
+  const [article, setArticle] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
-  // Scroll to top on article navigation
   useEffect(() => {
+    // Scroll to top on article navigation
     window.scrollTo({ top: 0, behavior: 'instant' });
+    setIsLoading(true);
+
+    // Simulating a network request for the article
+    const timer = setTimeout(() => {
+      const fetchedArticle = getArticleBySlug(slug);
+      if (fetchedArticle) {
+        setArticle(fetchedArticle);
+      } else {
+        setNotFound(true);
+      }
+      setIsLoading(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
   }, [slug]);
 
-  if (!article) {
+  if (notFound) {
     return <Navigate to="/articles" replace />;
+  }
+
+  if (isLoading || !article) {
+    return (
+      <Container className="pb-14 pt-36 lg:pb-20 lg:pt-44">
+        <LoadingState variant="detail" />
+      </Container>
+    );
   }
 
   const related = getRelatedArticles(article.slug, article.category, 3);
 
   return (
     <>
-
       {/* Text-first header (Image and overlays stripped) */}
       <header>
         <Container className="pb-14 pt-36 lg:pb-20 lg:pt-44">

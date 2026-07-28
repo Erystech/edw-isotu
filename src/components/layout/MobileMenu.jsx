@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { X, ChevronDown } from 'lucide-react';
+import { NavLink, useLocation } from 'react-router-dom';
 import Button from '../ui/Button';
 
 export default function MobileMenu({ id, open, onClose, links }) {
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
   const [expanded, setExpanded] = useState({});
+  const location = useLocation();
 
   useEffect(() => {
     if (!open) return;
@@ -58,6 +60,10 @@ export default function MobileMenu({ id, open, onClose, links }) {
     }));
   };
 
+  const isParentActive = (subLinks) => {
+    return subLinks?.some(sub => location.pathname.startsWith(sub.href));
+  };
+
   if (!open) return null;
 
   return (
@@ -80,7 +86,7 @@ export default function MobileMenu({ id, open, onClose, links }) {
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="grid h-10 w-10 place-items-center rounded-lg transition-colors hover:bg-[var(--color-surface)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent)] focus-visible:outline-offset-2"
+            className="grid h-10 w-10 place-items-center rounded-lg transition-colors hover:bg-[var(--color-surface)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent-light)] focus-visible:outline-offset-2"
           >
             <X className="text-[var(--color-primary)]" />
           </button>
@@ -94,7 +100,11 @@ export default function MobileMenu({ id, open, onClose, links }) {
                   <button
                     onClick={() => toggleExpand(link.label)}
                     aria-expanded={expanded[link.label] || false}
-                    className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-base font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]"
+                    className={`flex w-full items-center justify-between rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)] ${
+                      isParentActive(link.subLinks)
+                        ? 'text-[var(--color-accent-light)]'
+                        : 'text-[var(--color-text)]'
+                    }`}
                   >
                     {link.label}
                     <ChevronDown
@@ -108,26 +118,38 @@ export default function MobileMenu({ id, open, onClose, links }) {
                     <ul className="mt-1 flex flex-col gap-1 pl-4">
                       {link.subLinks.map((sub) => (
                         <li key={sub.href}>
-                          <a
-                            href={sub.href}
+                          <NavLink
+                            to={sub.href}
                             onClick={onClose}
-                            className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]"
+                            className={({ isActive }) =>
+                              `block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)] ${
+                                isActive 
+                                  ? 'text-[var(--color-accent-light)] bg-[var(--color-surface)]'
+                                  : 'text-[var(--color-text-muted)]'
+                              }`
+                            }
                           >
                             {sub.label}
-                          </a>
+                          </NavLink>
                         </li>
                       ))}
                     </ul>
                   )}
                 </>
               ) : (
-                <a
-                  href={link.href}
+                <NavLink
+                  to={link.href}
                   onClick={onClose}
-                  className="block rounded-lg px-3 py-3 text-base font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]"
+                  className={({ isActive }) =>
+                    `block rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)] ${
+                      isActive 
+                        ? 'text-[var(--color-accent-light)] bg-[var(--color-surface)]' 
+                        : 'text-[var(--color-text)]'
+                    }`
+                  }
                 >
                   {link.label}
-                </a>
+                </NavLink>
               )}
             </li>
           ))}

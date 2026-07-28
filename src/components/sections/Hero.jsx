@@ -4,6 +4,7 @@ import Button from '../ui/Button';
 import Heading from '../typography/Heading';
 import Paragraph from '../typography/Paragraph';
 import AnimatedCounter from '../misc/AnimatedCounter';
+import { LoadingState } from '../states';
 
 /**
  * Hero
@@ -14,6 +15,7 @@ import AnimatedCounter from '../misc/AnimatedCounter';
  * @param {{ label: string, value: number, prefix?: string, suffix?: string }[]} stats
  * @param {{ label: string, href: string }} primaryAction
  * @param {{ label: string, href: string }} secondaryAction
+ * @param {boolean} isLoading
  */
 export default function Hero({
   eyebrow,
@@ -23,7 +25,12 @@ export default function Hero({
   primaryAction,
   secondaryAction,
   stats = [],
+  isLoading = false,
 }) {
+  if (isLoading) {
+    return <LoadingState variant="hero" />;
+  }
+
   return (
     <section className="relative flex min-h-screen items-end overflow-hidden lg:items-center">
       <img

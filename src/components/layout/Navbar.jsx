@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Menu, ChevronDown } from 'lucide-react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { cn } from '../../lib/cn';
 import Container from './Container';
 import Button from '../ui/Button';
@@ -20,9 +21,11 @@ const NAV_LINKS = [
   },
   { label: 'Insights', href: '/insights' },
 ];
+
 export default function Navbar({ transparent = true }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -32,6 +35,11 @@ export default function Navbar({ transparent = true }) {
   }, []);
 
   const isSolid = scrolled || !transparent;
+
+  // Helper to keep parent dropdown highlighted if a child is active
+  const isParentActive = (subLinks) => {
+    return subLinks?.some(sub => location.pathname.startsWith(sub.href));
+  };
 
   return (
     <header
@@ -47,8 +55,8 @@ export default function Navbar({ transparent = true }) {
           className="flex h-30 items-center justify-between"
           aria-label="Primary"
         >
-          <a
-            href="/"
+          <Link
+            to="/"
             className="flex items-center transition-opacity hover:opacity-80"
           >
             <img 
@@ -56,7 +64,7 @@ export default function Navbar({ transparent = true }) {
               alt="Edwin Isotu" 
               className="h-11 w-auto object-contain"
             />
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => (
@@ -66,9 +74,11 @@ export default function Navbar({ transparent = true }) {
                     <button
                       className={cn(
                         'flex items-center gap-1 text-sm font-medium transition-colors py-2',
-                        isSolid
-                          ? 'text-[var(--color-text)] hover:text-[var(--color-accent-light)]'
-                          : 'text-white/90 hover:text-[var(--color-accent-light)]'
+                        isParentActive(link.subLinks)
+                          ? 'text-[var(--color-accent-light)]' // Active state for parent
+                          : isSolid
+                            ? 'text-[var(--color-text)] hover:text-[var(--color-accent-light)]'
+                            : 'text-white/90 hover:text-[var(--color-accent-light)]'
                       )}
                       aria-haspopup="true"
                       aria-expanded="false"
@@ -80,28 +90,35 @@ export default function Navbar({ transparent = true }) {
                     <ul className="absolute left-0 top-full hidden w-64 flex-col gap-1 rounded-lg bg-[var(--color-surface-elevated)] p-2 shadow-[var(--shadow-card)] border border-[var(--color-border)] group-hover:flex">
                       {link.subLinks.map((sub) => (
                         <li key={sub.href}>
-                          <a
-                            href={sub.href}
-                            className="block rounded-md px-3 py-2 text-sm text-[var(--color-text)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]"
+                          <NavLink
+                            to={sub.href}
+                            className={({ isActive }) => cn(
+                              'block rounded-md px-3 py-2 text-sm transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)]',
+                              isActive 
+                                ? 'text-[var(--color-accent-light)] font-bold bg-[var(--color-surface)]'
+                                : 'text-[var(--color-text)]'
+                            )}
                           >
                             {sub.label}
-                          </a>
+                          </NavLink>
                         </li>
                       ))}
                     </ul>
                   </>
                 ) : (
-                  <a
-                    href={link.href}
-                    className={cn(
+                  <NavLink
+                    to={link.href}
+                    className={({ isActive }) => cn(
                       'text-sm font-medium transition-colors py-2',
-                      isSolid
-                        ? 'text-[var(--color-text)] hover:text-[var(--color-accent-light)]'
-                        : 'text-white/90 hover:text-[var(--color-accent-light)]'
+                      isActive 
+                        ? 'text-[var(--color-accent-light)]' // Active state for standard link
+                        : isSolid
+                          ? 'text-[var(--color-text)] hover:text-[var(--color-accent-light)]'
+                          : 'text-white/90 hover:text-[var(--color-accent-light)]'
                     )}
                   >
                     {link.label}
-                  </a>
+                  </NavLink>
                 )}
               </li>
             ))}
