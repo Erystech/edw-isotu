@@ -1,2 +1,2 @@
 export { default as Hero } from './Hero';
-export { default as AboutPreview } from './AboutPreview';
+export { default as AboutPreview } from './Aboutpreview';
