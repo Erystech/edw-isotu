@@ -3,7 +3,7 @@ import Heading from '../../typography/Heading';
 import Paragraph from '../../typography/Paragraph';
 import Label from '../../typography/Label';
 import Divider from '../../ui/Divider';
-import SocialLinks from '../../misc/SocialLinks';
+import SocialLinks from '../../misc/SocialLInks';
 
 const DETAILS = [
   {
