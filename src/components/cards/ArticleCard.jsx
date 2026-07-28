@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { cn } from '../../lib/cn';
-import { formatDate } from '../../lib/formatDate';
+import { formatDate } from '../../lib/FormatDate';
 import Heading from '../typography/Heading';
 import Paragraph from '../typography/Paragraph';
 import Label from '../typography/Label';

@@ -8,7 +8,7 @@ import { ArticleContent } from '../components/blocks';
 import { ArticleGrid } from '../components/sections/articles';
 import { LoadingState } from '../components/states';
 import { getArticleBySlug, getRelatedArticles } from '../components/data/articles';
-import { formatDate } from '../lib/formatDate';
+import { formatDate } from '../lib/FormatDate';
 
 function ArticleDetail() {
   const { slug } = useParams();
