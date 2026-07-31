@@ -1,17 +1,20 @@
 import Section from '../../../layout/Section';
 import SectionHeading from '../../../misc/SectionHeading';
 import Paragraph from '../../../typography/Paragraph';
+import { FadeInOnScroll } from '../../../animations';
 
 export default function AGSModel({ image }) {
   return (
     <Section tone="muted">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
-          <SectionHeading
-            eyebrow="The Clearlift AGS Model"
-            title="Lifting ordinary Africans to extraordinary results"
-          />
-          <div className="mt-6 flex flex-col gap-4">
+          <FadeInOnScroll variant="fade-up">
+            <SectionHeading
+              eyebrow="The Clearlift AGS Model"
+              title="Lifting ordinary Africans to extraordinary results"
+            />
+          </FadeInOnScroll>
+          <FadeInOnScroll variant="fade-up" delay={100} className="mt-6 flex flex-col gap-4">
             <Paragraph tone="muted" size="md">
               With the Clearlift AGS model, we lift ordinary Africans with
               potential to do extraordinary things — achieving results that
@@ -29,17 +32,17 @@ export default function AGSModel({ image }) {
               growth — a united, healthy, and productive continent, driven
               by its own citizens.
             </Paragraph>
-          </div>
+          </FadeInOnScroll>
         </div>
 
-        <div className="overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]">
+        <FadeInOnScroll variant="fade" delay={200} className="overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)]">
           <img
             src={image}
             alt="Dr. Edwin Isotu mentoring a group of emerging leaders"
             loading="lazy"
             className="aspect-[4/5] w-full object-cover"
           />
-        </div>
+        </FadeInOnScroll>
       </div>
     </Section>
   );

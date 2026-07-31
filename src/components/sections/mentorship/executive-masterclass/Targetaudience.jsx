@@ -2,6 +2,7 @@ import { Briefcase, UserCog, Rocket, Landmark } from 'lucide-react';
 import Section from '../../../layout/Section';
 import SectionHeading from '../../../misc/SectionHeading';
 import { SpeakerCard } from '../../../cards';
+import { FadeInOnScroll, StaggerChildren } from '../../../animations';
 
 const AUDIENCE = [
   {
@@ -29,12 +30,14 @@ const AUDIENCE = [
 export default function TargetAudience() {
   return (
     <Section tone="muted">
-      <SectionHeading eyebrow="Who It's For" title="Who this masterclass is for" />
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <FadeInOnScroll variant="fade-up">
+        <SectionHeading eyebrow="Who It's For" title="Who this masterclass is for" />
+      </FadeInOnScroll>
+      <StaggerChildren className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {AUDIENCE.map((item) => (
           <SpeakerCard key={item.title} {...item} />
         ))}
-      </div>
+      </StaggerChildren>
     </Section>
   );
 }

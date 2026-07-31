@@ -1,6 +1,7 @@
 import Section from '../../../layout/Section';
 import SectionHeading from '../../../misc/SectionHeading';
 import { Accordion } from '../../../misc';
+import { FadeInOnScroll } from '../../../animations';
 
 const FAQS = [
   {
@@ -48,15 +49,17 @@ const FAQS = [
 export default function FAQ() {
   return (
     <Section tone="muted">
-      <SectionHeading
-        align="center"
-        eyebrow="FAQ"
-        title="Before you apply"
-        className="mx-auto text-center"
-      />
-      <div className="mx-auto mt-10 max-w-2xl">
+      <FadeInOnScroll variant="fade-up">
+        <SectionHeading
+          align="center"
+          eyebrow="FAQ"
+          title="Before you apply"
+          className="mx-auto text-center"
+        />
+      </FadeInOnScroll>
+      <FadeInOnScroll variant="fade-up" delay={100} className="mx-auto mt-10 max-w-2xl">
         <Accordion items={FAQS} />
-      </div>
+      </FadeInOnScroll>
     </Section>
   );
 }

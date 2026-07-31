@@ -5,18 +5,22 @@ import Label from '../../../typography/Label';
 import Heading from '../../../typography/Heading';
 import Paragraph from '../../../typography/Paragraph';
 import Button from '../../../ui/Button';
+import { FadeInOnScroll } from '../../../animations';
 
 const BREADCRUMB = [
   { label: 'Home', href: '/' },
   { label: 'Mentorship', href: '/mentorship' },
   { label: 'Executive Masterclass' },
 ];
+
 export default function Hero() {
   return (
     <Container className="pt-36 lg:pt-44">
-      <Breadcrumb items={BREADCRUMB} />
+      <FadeInOnScroll variant="fade-up">
+        <Breadcrumb items={BREADCRUMB} />
+      </FadeInOnScroll>
 
-      <div className="mt-8 max-w-3xl">
+      <FadeInOnScroll variant="fade-up" delay={100} className="mt-8 max-w-3xl">
         <Label as="p">Board-Level Facilitation</Label>
         <Heading as="h1" size="2xl" className="mt-3">
           Executive Masterclass with Dr. Edwin Isotu
@@ -38,7 +42,7 @@ export default function Hero() {
             Learn More
           </Button>
         </div>
-      </div>
+      </FadeInOnScroll>
     </Container>
   );
 }

@@ -2,6 +2,7 @@ import { Compass, Zap, Eye, Wrench, Users, ShieldCheck, Flag } from 'lucide-reac
 import Section from '../../../layout/Section';
 import SectionHeading from '../../../misc/SectionHeading';
 import { SpeakerCard } from '../../../cards';
+import { FadeInOnScroll, StaggerChildren } from '../../../animations';
 
 const BENEFITS = [
   {
@@ -48,15 +49,17 @@ const BENEFITS = [
   },
 ];
 
-export default function ProgramBenefits() {
-  return (
-    <Section tone="muted">
-      <SectionHeading eyebrow="Program Benefits" title="What you gain as a mentee" />
-      <div className="mt-10 grid gap-6 sm:grid-cols-2">
-        {BENEFITS.map((benefit) => (
-          <SpeakerCard key={benefit.title} {...benefit} />
-        ))}
-      </div>
-    </Section>
-  );
-}
+  export default function ProgramBenefits() {
+    return (
+      <Section tone="muted">
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading eyebrow="Program Benefits" title="What you gain as a mentee" />
+        </FadeInOnScroll>
+        <StaggerChildren className="mt-10 grid gap-6 sm:grid-cols-2">
+          {BENEFITS.map((benefit) => (
+            <SpeakerCard key={benefit.title} {...benefit} />
+          ))}
+        </StaggerChildren>
+      </Section>
+    );
+  }

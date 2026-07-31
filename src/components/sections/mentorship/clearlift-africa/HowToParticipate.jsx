@@ -1,6 +1,7 @@
 import Section from '../../../layout/Section';
 import SectionHeading from '../../../misc/SectionHeading';
 import Timeline from '../../about/Timeline';
+import { FadeInOnScroll } from '../../../animations';
 
 const STEPS = [
   {
@@ -38,10 +39,12 @@ export default function HowToParticipate() {
 
   return (
     <Section>
-      <SectionHeading eyebrow="How to Participate" title="Your path to transformation" />
-      <div className="mt-10 max-w-2xl">
+      <FadeInOnScroll variant="fade-up">
+        <SectionHeading eyebrow="How to Participate" title="Your path to transformation" />
+      </FadeInOnScroll>
+      <FadeInOnScroll variant="fade-up" delay={100} className="mt-10 max-w-2xl">
         <Timeline items={items} />
-      </div>
+      </FadeInOnScroll>
     </Section>
   );
 }

@@ -2,6 +2,7 @@ import { Leaf, Rocket, Target } from 'lucide-react';
 import Section from '../../../layout/Section';
 import SectionHeading from '../../../misc/SectionHeading';
 import { MentorshipHubCard } from '../../../cards';
+import { FadeInOnScroll, StaggerChildren } from '../../../animations';
 
 // TODO: replace with the live Clearlift Africa application form URL
 // (ideally with a hub-specific prefill param per entry below).
@@ -36,17 +37,19 @@ export default function HubGrid({ images = {} }) {
   ];
 
   return (
-    <Section>
-      <SectionHeading
-        eyebrow="Program Hubs"
-        title="Join the hub that fits your journey"
-        description="Each hub is a distinct mentorship track — choose the one that matches where you are right now."
-      />
-      <div className="mt-10 grid gap-8 lg:grid-cols-3">
-        {hubs.map((hub) => (
-          <MentorshipHubCard key={hub.title} {...hub} />
-        ))}
-      </div>
-    </Section>
-  );
-}
+      <Section>
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            eyebrow="Program Hubs"
+            title="Join the hub that fits your journey"
+            description="Each hub is a distinct mentorship track — choose the one that matches where you are right now."
+          />
+        </FadeInOnScroll>
+        <StaggerChildren className="mt-10 grid gap-8 lg:grid-cols-3">
+          {hubs.map((hub) => (
+            <MentorshipHubCard key={hub.title} {...hub} />
+          ))}
+        </StaggerChildren>
+      </Section>
+    );
+  }

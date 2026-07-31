@@ -3,6 +3,7 @@ import Section from '../../../layout/Section';
 import SectionHeading from '../../../misc/SectionHeading';
 import { StatsCard } from '../../../cards';
 import { LoadingState } from '../../../states';
+import { FadeInOnScroll, StaggerChildren } from '../../../animations';
 
 const STATS = [
   { value: 325, suffix: '+', label: 'Emerging leaders and professionals raised' },
@@ -15,7 +16,6 @@ export default function ImpactStats() {
   const [statsData, setStatsData] = useState(null);
 
   useEffect(() => {
-    // Simulating data fetch for the metrics
     const timer = setTimeout(() => {
       setStatsData(STATS);
     }, 1200);
@@ -24,20 +24,22 @@ export default function ImpactStats() {
 
   return (
     <Section tone="primary">
-      <SectionHeading
-        invert
-        eyebrow="Impact"
-        title="A proven track record of transformation"
-      />
+      <FadeInOnScroll variant="fade-up">
+        <SectionHeading
+          invert
+          eyebrow="Impact"
+          title="A proven track record of transformation"
+        />
+      </FadeInOnScroll>
       <div className="mt-12">
         {statsData === null ? (
           <LoadingState variant="stats" />
         ) : (
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+          <StaggerChildren step={100} className="grid grid-cols-2 gap-8 lg:grid-cols-4">
             {statsData.map((stat) => (
               <StatsCard key={stat.label} invert {...stat} />
             ))}
-          </div>
+          </StaggerChildren>
         )}
       </div>
     </Section>

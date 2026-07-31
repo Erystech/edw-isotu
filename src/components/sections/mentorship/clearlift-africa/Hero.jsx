@@ -5,6 +5,7 @@ import Label from '../../../typography/Label';
 import Heading from '../../../typography/Heading';
 import Paragraph from '../../../typography/Paragraph';
 import Button from '../../../ui/Button';
+import { FadeInOnScroll } from '../../../animations';
 
 const BREADCRUMB = [
   { label: 'Home', href: '/' },
@@ -17,10 +18,12 @@ const APPLY_URL = 'https://forms.gle/REPLACE_WITH_CLEARLIFT_APPLICATION_FORM';
 
 export default function Hero() {
   return (
-    <Container className="pt-36 lg:pt-44 mb-15">
-      <Breadcrumb items={BREADCRUMB} />
+    <Container className="mb-15 pt-36 lg:pt-44">
+      <FadeInOnScroll variant="fade-up">
+        <Breadcrumb items={BREADCRUMB} />
+      </FadeInOnScroll>
 
-      <div className="mt-8 max-w-3xl">
+      <FadeInOnScroll variant="fade-up" delay={100} className="mt-8 max-w-3xl">
         <Label as="p">Clearlift Africa Mentorship</Label>
         <Heading as="h1" size="2xl" className="mt-3">
           Unlock your potential, at scale
@@ -46,7 +49,7 @@ export default function Hero() {
             Become a Mentor
           </Button>
         </div>
-      </div>
+      </FadeInOnScroll>
     </Container>
   );
 }
