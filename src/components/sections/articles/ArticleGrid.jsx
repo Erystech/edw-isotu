@@ -1,25 +1,27 @@
 import { cn } from '../../../lib/cn';
 import ArticleCard from '../../cards/ArticleCard';
 import { EmptyState } from '../../states';
+import { StaggerChildren } from '../../animations';
 
 /**
  * ArticleGrid
- * Renders a set of ArticleCard components in a responsive grid.
- * Used both on the /articles list page (full article set) and on
- * article detail pages (related-articles subset) — kept generic so
- * it doesn't assume how many articles it's given.
+ * Renders a set of ArticleCard components in a responsive grid,
+ * staggering each card's scroll-triggered entrance. Used both on the
+ * /articles list page (full article set) and on article detail pages
+ * (related-articles subset) — kept generic so it doesn't assume how
+ * many articles it's given.
  */
 export default function ArticleGrid({ articles = [], className, ...props }) {
   if (!articles.length) return <EmptyState variant="articles" />;
 
   return (
-    <div
+    <StaggerChildren
       className={cn('grid gap-8 sm:grid-cols-2 lg:grid-cols-3', className)}
       {...props}
     >
       {articles.map((article) => (
         <ArticleCard key={article.slug} {...article} />
       ))}
-    </div>
+    </StaggerChildren>
   );
 }

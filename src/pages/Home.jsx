@@ -13,6 +13,7 @@ import { Quote } from '../components/typography';
 import { SectionHeading, CTABanner, LogoStrip, Accordion } from '../components/misc';
 import { Hero, AboutPreview } from '../components/sections';
 import { LoadingState } from '../components/states';
+import { FadeInOnScroll, StaggerChildren } from '../components/animations';
 import IsotuPotrait from '../assets/images/edisotu.webp';
 import HeroImg from '../assets/images/isotu-banner.webp';
 import { clientLogos, pressLogos } from '../assets/logos';
@@ -118,143 +119,170 @@ function Home() {
       />
 
       <Section className="!pt-16 !pb-16">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-          Trusted by teams at
-        </p>
-        <LogoStrip className="mt-8" logos={clientLogos} />
+        <FadeInOnScroll variant="fade">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+            Trusted by teams at
+          </p>
+          <LogoStrip className="mt-8" logos={clientLogos} />
+        </FadeInOnScroll>
       </Section>
 
       <Divider className="mx-auto max-w-7xl" />
 
       <Section tone="muted">
-        <AboutPreview
-          eyebrow="Meet EDWIN ISOTU"
-          title="From the field, not just the podium."
-          paragraphs={[
-            'Dr. Edwin Isotu Edeh, PhD is an award-winning United Nations’ Global Environmental Health Expert, Executive Career Mentor, Keynote Speaker and a transformational leader with two decades worth of technical and strategic level experience in public health and environmental sustainability spanning across governance, industry, academics and humanitarian spheres. He currently coordinates Public Health and Environment (PHE) Programme of the World Health Organization (WHO) in Nigeria, as a National Consultant.',
-            'He has excellent mastery in raising and bringing out the best out of people in vision, strategy and outstanding results. He is ranked Africa’s #1 Mentor on Public Health & Environment (PHE) and listed among top Africa’s 1% leadership mentors on clarity and Career Growth.',
-            'Dr. Edwin Isotu, as popularly called, is a 2-time Winner of Nigeria Health Sustainability Consultant of the Year 2021 and 2022. He has mentored over 350 emerging leaders and public health and environmental experts globally.',
-          ]}
-          image={PORTRAIT_IMAGE}
-          imageAlt="Edwin Isotu"
-          action={{ label: "Read Edwin's full story", href: '/about' }}
-        />
+        <FadeInOnScroll variant="fade-up">
+          <AboutPreview
+            eyebrow="Meet EDWIN ISOTU"
+            title="From the field, not just the podium."
+            paragraphs={[
+              'Dr. Edwin Isotu Edeh, PhD is an award-winning United Nations’ Global Environmental Health Expert, Executive Career Mentor, Keynote Speaker and a transformational leader with two decades worth of technical and strategic level experience in public health and environmental sustainability spanning across governance, industry, academics and humanitarian spheres. He currently coordinates Public Health and Environment (PHE) Programme of the World Health Organization (WHO) in Nigeria, as a National Consultant.',
+              'He has excellent mastery in raising and bringing out the best out of people in vision, strategy and outstanding results. He is ranked Africa’s #1 Mentor on Public Health & Environment (PHE) and listed among top Africa’s 1% leadership mentors on clarity and Career Growth.',
+              'Dr. Edwin Isotu, as popularly called, is a 2-time Winner of Nigeria Health Sustainability Consultant of the Year 2021 and 2022. He has mentored over 350 emerging leaders and public health and environmental experts globally.',
+            ]}
+            image={PORTRAIT_IMAGE}
+            imageAlt="Edwin Isotu"
+            action={{ label: "Read Edwin's full story", href: '/about' }}
+          />
+        </FadeInOnScroll>
       </Section>
 
       <Section>
-        <SectionHeading
-          eyebrow="Signature Talks"
-          title="Speaking topics"
-          description="Each talk is built around a single operating idea your team can put to work the next morning."
-        />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            eyebrow="Signature Talks"
+            title="Speaking topics"
+            description="Each talk is built around a single operating idea your team can put to work the next morning."
+          />
+        </FadeInOnScroll>
+        <StaggerChildren className="mt-10 grid gap-6 md:grid-cols-3">
           {SPEAKING_TOPICS.map((topic) => (
             <SpeakerCard key={topic.title} {...topic} />
           ))}
-        </div>
+        </StaggerChildren>
       </Section>
 
       <Section id="keynote-reel" tone="muted" className="scroll-mt-24">
-        <SectionHeading
-          align="center"
-          eyebrow="Featured Keynote"
-          title="Watch Edwin in action"
-          description="A 4-minute reel from recent keynotes \u2014 the pacing, the audience response, the specifics."
-          className="mx-auto text-center"
-        />
-        <div className="mx-auto mt-10 max-w-3xl">
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            align="center"
+            eyebrow="Featured Keynote"
+            title="Watch Edwin in action"
+            description="A 4-minute reel from recent keynotes \u2014 the pacing, the audience response, the specifics."
+            className="mx-auto text-center"
+          />
+        </FadeInOnScroll>
+        <FadeInOnScroll variant="scale" delay={120} className="mx-auto mt-10 max-w-3xl">
           <VideoEmbed
             src="https://www.youtube.com/embed/vtnS37ua4Vo?si=QbkIQ3ima9WCpHlQ"
             title="Edwin Isotu keynote reel"
           />
-        </div>
+        </FadeInOnScroll>
       </Section>
 
       <Section>
-        <SectionHeading
-          eyebrow="Books"
-          title="Ideas that outlast the keynote"
-          description="Three books on turning strategy into daily execution."
-        />
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            eyebrow="Books"
+            title="Ideas that outlast the keynote"
+            description="Three books on turning strategy into daily execution."
+          />
+        </FadeInOnScroll>
         {isLoading ? (
           <div className="mt-10">
             <LoadingState variant="cards" count={3} />
           </div>
         ) : (
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerChildren className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {BOOKS.map((book) => (
               <BookCard key={book.title} cover={BOOK_COVER} purchaseHref="/books" {...book} />
             ))}
-          </div>
+          </StaggerChildren>
         )}
       </Section>
 
       <Section tone="primary">
-        <SectionHeading
-          invert
-          eyebrow="Impact"
-          title="The numbers behind the stage time"
-          description="Every keynote is measured the same way Edwin asks teams to measure their own work."
-        />
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            invert
+            eyebrow="Impact"
+            title="The numbers behind the stage time"
+            description="Every keynote is measured the same way Edwin asks teams to measure their own work."
+          />
+        </FadeInOnScroll>
         {isLoading ? (
           <div className="mt-12">
             <LoadingState variant="stats" />
           </div>
         ) : (
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+          <StaggerChildren
+            className="mt-12 grid gap-8 sm:grid-cols-3"
+            step={100}
+          >
             <StatsCard invert value={250} suffix="+" label="Keynotes delivered" />
             <StatsCard invert value={40} suffix="k+" label="Leaders trained" />
             <StatsCard invert value={98} suffix="%" label="Would rebook" />
-          </div>
+          </StaggerChildren>
         )}
       </Section>
 
       <Section>
-        <SectionHeading eyebrow="Testimonials" title="What leaders say afterward" />
-        <TestimonialCarousel testimonials={TESTIMONIALS} />
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading eyebrow="Testimonials" title="What leaders say afterward" />
+        </FadeInOnScroll>
+        <FadeInOnScroll variant="fade" delay={100}>
+          <TestimonialCarousel testimonials={TESTIMONIALS} />
+        </FadeInOnScroll>
       </Section>
 
       <Section tone="muted">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-          As featured in
-        </p>
-        <LogoStrip className="mt-8" logos={pressLogos} />
+        <FadeInOnScroll variant="fade">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+            As featured in
+          </p>
+          <LogoStrip className="mt-8" logos={pressLogos} />
+        </FadeInOnScroll>
       </Section>
 
       <Section>
-        <SectionHeading
-          eyebrow="Insights"
-          title="Latest articles"
-          description="Short, specific writing on leadership and execution."
-        />
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            eyebrow="Insights"
+            title="Latest articles"
+            description="Short, specific writing on leadership and execution."
+          />
+        </FadeInOnScroll>
         {isLoading ? (
           <div className="mt-10">
             <LoadingState variant="cards" count={3} />
           </div>
         ) : (
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerChildren className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {RECENT_ARTICLES.map((article) => (
               <ArticleCard key={article.slug} {...article} />
             ))}
-          </div>
+          </StaggerChildren>
         )}
       </Section>
 
       <Section tone="muted">
-        <SectionHeading align="center" eyebrow="FAQ" title="Before you book" className="mx-auto text-center" />
-        <div className="mx-auto mt-10 max-w-2xl">
-          <Accordion items={FAQS} />
-        </div>
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading align="center" eyebrow="FAQ" title="Before you book" className="mx-auto text-center" />
+          <div className="mx-auto mt-10 max-w-2xl">
+            <Accordion items={FAQS} />
+          </div>
+        </FadeInOnScroll>
       </Section>
 
       <Section>
-        <CTABanner
-          eyebrow="Book Edwin"
-          title="Ready to bring momentum to your next event?"
-          description="Check availability and get a response within one business day."
-          primaryAction={{ label: 'Check availability', href: '/contact' }}
-          secondaryAction={{ label: 'Download media kit', href: '/media' }}
-        />
+        <FadeInOnScroll variant="scale">
+          <CTABanner
+            eyebrow="Book Edwin"
+            title="Ready to bring momentum to your next event?"
+            description="Check availability and get a response within one business day."
+            primaryAction={{ label: 'Check availability', href: '/contact' }}
+            secondaryAction={{ label: 'Download media kit', href: '/media' }}
+          />
+        </FadeInOnScroll>
       </Section>
     </>
   );

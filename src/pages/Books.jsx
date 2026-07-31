@@ -4,6 +4,7 @@ import { SectionHeading } from '../components/misc';
 import { BookCard } from '../components/cards';
 import { FeaturedBook } from '../components/sections/books';
 import { LoadingState, EmptyState } from '../components/states';
+import { FadeInOnScroll, StaggerChildren } from '../components/animations';
 
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
 
@@ -61,15 +62,19 @@ function Books() {
   return (
     <>
       <Section id="featured-book" className="mt-12">
-        <FeaturedBook {...FEATURED_BOOK} />
+        <FadeInOnScroll variant="fade-up">
+          <FeaturedBook {...FEATURED_BOOK} />
+        </FadeInOnScroll>
       </Section>
 
       <Section tone="muted">
-        <SectionHeading
-          eyebrow="More from Edwin"
-          title="The rest of the collection"
-          description="Each book stands alone — pick the one that matches the problem in front of you."
-        />
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            eyebrow="More from Edwin"
+            title="The rest of the collection"
+            description="Each book stands alone — pick the one that matches the problem in front of you."
+          />
+        </FadeInOnScroll>
         
         {books === null ? (
           <div className="mt-10">
@@ -80,11 +85,11 @@ function Books() {
             <EmptyState variant="books" />
           </div>
         ) : (
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerChildren className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {books.map((book) => (
               <BookCard key={book.title} purchaseHref="#" {...book} />
             ))}
-          </div>
+          </StaggerChildren>
         )}
       </Section>
     </>

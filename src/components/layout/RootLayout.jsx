@@ -1,14 +1,19 @@
 // src/components/layout/RootLayout.jsx
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar'; //
-import Footer from './Footer'; //[cite: 2]
+import Navbar from './Navbar';
+import Footer from './Footer';
+import { PageTransition } from '../animations';
+import ScrollToTop from '../animations/ScrollToTop';
 
 export default function RootLayout() {
   return (
     <>
+      <ScrollToTop />
       <Navbar transparent />
       <main>
-        <Outlet /> 
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
     </>

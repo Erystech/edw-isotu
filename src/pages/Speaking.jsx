@@ -7,6 +7,7 @@ import { SectionHeading, CTABanner } from '../components/misc';
 import { Hero } from '../components/sections';
 import { WhyEdwin, EventFormats, BookingProcess } from '../components/sections/speaking';
 import { VideoEmbed } from '../components/blocks';
+import { FadeInOnScroll, StaggerChildren } from '../components/animations';
 import HeroImg from '../assets/images/keynotemain.webp';
 
 const HERO_IMAGE = HeroImg;
@@ -122,53 +123,63 @@ function Speaking() {
       />
 
       <Section>
-        <WhyEdwin
-          eyebrow="Why Edwin"
-          title="Credibility built in the field, not the green room"
-          description="What makes his talks land differently with leadership teams."
-          points={WHY_EDWIN_POINTS}
-        />
+        <FadeInOnScroll variant="fade-up">
+          <WhyEdwin
+            eyebrow="Why Edwin"
+            title="Credibility built in the field, not the green room"
+            description="What makes his talks land differently with leadership teams."
+            points={WHY_EDWIN_POINTS}
+          />
+        </FadeInOnScroll>
       </Section>
 
       <Section tone="muted">
-        <SectionHeading
-          eyebrow="Signature Talks"
-          title="Speaking topics"
-          description="Each talk is built around a single operating idea your team can put to work immediately."
-        />
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            eyebrow="Signature Talks"
+            title="Speaking topics"
+            description="Each talk is built around a single operating idea your team can put to work immediately."
+          />
+        </FadeInOnScroll>
+        <StaggerChildren className="mt-10 grid gap-6 md:grid-cols-2">
           {SPEAKING_TOPICS.map((topic) => (
             <SpeakerCard key={topic.title} {...topic} />
           ))}
-        </div>
+        </StaggerChildren>
       </Section>
       <Section tone="muted">
-        <SectionHeading eyebrow="Formats" title="Ways to book Edwin" />
-        <div className="mt-10">
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading eyebrow="Formats" title="Ways to book Edwin" />
+        </FadeInOnScroll>
+        <FadeInOnScroll variant="fade-up" delay={100} className="mt-10">
           <EventFormats formats={EVENT_FORMATS} />
-        </div>
+        </FadeInOnScroll>
       </Section>
       <Section tone="muted">
-        <SectionHeading eyebrow="Process" title="How booking works" />
-        <div className="mt-10">
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading eyebrow="Process" title="How booking works" />
+        </FadeInOnScroll>
+        <FadeInOnScroll variant="fade-up" delay={100} className="mt-10">
           <BookingProcess steps={BOOKING_STEPS} />
-        </div>
+        </FadeInOnScroll>
       </Section>
 
       <Section id="reel" className="scroll-mt-24">
-        <SectionHeading
-          align="center"
-          eyebrow="Featured Keynote"
-          title="Watch Edwin in action"
-          description="A 4-minute reel from recent keynotes \u2014 the pacing, the audience response, the specifics."
-          className="mx-auto text-center"
-        />
-        <div className="mx-auto mt-10 max-w-3xl">
+        <FadeInOnScroll variant="fade-up">
+          <SectionHeading
+            align="center"
+            eyebrow="Featured Keynote"
+            title="Watch Edwin in action"
+            description="A 4-minute reel from recent keynotes \u2014 the pacing, the audience response, the specifics."
+            className="mx-auto text-center"
+          />
+        </FadeInOnScroll>
+        <FadeInOnScroll variant="scale" delay={120} className="mx-auto mt-10 max-w-3xl">
           <VideoEmbed
             src="https://www.youtube.com/embed/vtnS37ua4Vo?si=QbkIQ3ima9WCpHlQ"
             title="Edwin Isotu keynote reel"
           />
-        </div>
+        </FadeInOnScroll>
       </Section>
     </>
   );
