@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { PageMeta } from '../components/meta/PageMeta';
 
 
 /**
@@ -50,7 +51,7 @@ const ThankYou = () => {
 
   return (
     <>
-
+      <PageMeta title="Thank You" description="Thank you for reaching out to Edwin Isotu." url="/thank-you" />
 
       <main
         id="main-content"

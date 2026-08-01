@@ -3,6 +3,7 @@ import { LoadingState, ErrorState } from '../components/states';
 import { Section } from '../components/layout';
 import { ArticlesHero, ArticleGrid } from '../components/sections/articles';
 import { articles as initialArticles } from '../components/data/articles';
+import { PageMeta } from '../components/meta/PageMeta';
 
 function Articles() {
   const [articlesList, setArticlesList] = useState(null); // null = loading
@@ -27,6 +28,11 @@ function Articles() {
 
   return (
     <>
+      <PageMeta 
+        title="Articles" 
+        description="Read the latest articles and publications by Edwin Isotu on public health, environmental policy, and executive leadership." 
+        url="/articles" 
+      />
       <ArticlesHero />
 
       <Section>

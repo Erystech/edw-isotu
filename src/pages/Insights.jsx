@@ -12,6 +12,7 @@ import PodcastImg from '../assets/images/isotu-smile.webp';
 import InterviewImg from '../assets/images/int1.webp';
 import ArticleImg from '../assets/images/field-work-mobile.webp';
 import { articles as initialArticles } from '../components/data/articles';
+import { PageMeta } from '../components/meta/PageMeta';
 
 const HERO_IMAGE = HeroImg;
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
@@ -67,6 +68,11 @@ function Insights() {
 
   return (
     <>
+      <PageMeta 
+        title="Insights & Media" 
+        description="Latest thoughts, interviews, and media appearances featuring Edwin Isotu." 
+        url="/insights" 
+      />
       <Hero
         eyebrow="Insights"
         title="Podcasts, interviews, books, and quotes."

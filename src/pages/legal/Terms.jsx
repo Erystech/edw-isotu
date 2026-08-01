@@ -5,6 +5,7 @@ import LegalLayout, {
   LegalList,
   LegalContact,
 } from './LegalLayout';
+import { PageMeta } from '../../components/meta/PageMeta';
 
 /**
  * Terms — Terms of Service page
@@ -28,6 +29,8 @@ const EFFECTIVE_DATE = '1 July 2025';
 
 const Terms = () => {
   return (
+    <>
+      <PageMeta title="Terms of Service" description="Terms and conditions for edwinisotu.com" url="/legal/terms" />
     <LegalLayout title="Terms of Service" lastUpdated={EFFECTIVE_DATE}>
 
       <LegalSection heading="Acceptance of terms">
@@ -177,6 +180,7 @@ const Terms = () => {
       </LegalSection>
 
     </LegalLayout>
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ import { FadeInOnScroll, StaggerChildren } from '../components/animations';
 import HeroImg from '../assets/images/profile-banner.webp'
 import BioImg from '../assets/images/about-main.webp'
 import { Photos} from '../components/sections/about/index'
+import { PageMeta } from '../components/meta/PageMeta';
 
 const HERO_IMAGE = HeroImg
 const BIO_IMAGE = BioImg
@@ -91,6 +92,12 @@ const RESEARCH_AREAS = [
 function About() {
   return (
     <>
+      <PageMeta 
+        title="About" 
+        description="Learn about Edwin Isotu's journey in public health, environmental sustainability, and executive leadership. WHO National Consultant and founder of Clearlift Africa." 
+        url="/about" 
+        keywords="biography, experience, WHO consultant, sustainability leader" 
+      />
       <Hero
         title="BRIEF PROFILE"
         description="Two decades spent closing the gap between public health strategy and the people it's meant to serve."

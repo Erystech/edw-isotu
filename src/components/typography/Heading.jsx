@@ -19,20 +19,25 @@ const sizes = {
   '3xl': 'text-6xl lg:text-7xl',
 };
 
-export default function Heading({
-  as: Tag = 'h2',
-  size = 'lg',
-  balance = true,
-  className,
-  children,
-  ...props
+export default function Heading({ 
+  as: Component = 'h2', 
+  size = 'md',      
+  balance = false,  
+  children, 
+  className = '', 
+  ...props 
 }) {
   return (
-    <Tag
-      className={cn(sizes[size], balance && 'text-balance', className)}
+    <Component 
+      className={cn(
+        'font-manrope font-bold', 
+        sizes[size], 
+        balance && 'text-balance', 
+        className
+      )}
       {...props}
     >
       {children}
-    </Tag>
+    </Component>
   );
 }

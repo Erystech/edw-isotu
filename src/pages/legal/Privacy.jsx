@@ -5,6 +5,7 @@ import LegalLayout, {
   LegalList,
   LegalContact,
 } from './LegalLayout';
+import { PageMeta } from '../../components/meta/PageMeta';
 
 /**
  * Privacy — Privacy Policy page
@@ -27,6 +28,8 @@ const EFFECTIVE_DATE = '1 July 2025';
 
 const Privacy = () => {
   return (
+    <>
+    <PageMeta title="Privacy Policy" description="Privacy policy for edwinisotu.com" url="/legal/privacy" />
     <LegalLayout title="Privacy Policy" lastUpdated={EFFECTIVE_DATE}>
 
       <LegalSection heading="Overview">
@@ -190,6 +193,7 @@ const Privacy = () => {
       </LegalSection>
 
     </LegalLayout>
+    </>
   );
 };
 

@@ -31,7 +31,7 @@ const COLUMNS = [
 ];
 export default function Footer() {
   return (
-    <footer className="bg-[var(--color-background-alt)] border-t border-[var(--color-border)] text-[var(--color-text-muted)]">
+    <footer role="contentinfo" className="bg-[var(--color-background-alt)] border-t border-[var(--color-border)] text-[var(--color-text-muted)]">
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>

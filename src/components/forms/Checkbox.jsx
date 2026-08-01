@@ -1,12 +1,15 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react'; 
 import { cn } from '../../lib/cn';
 
 const Checkbox = forwardRef(function Checkbox({ className, label, id, ...props }, ref) {
+  const internalId = useId();
+  const resolvedId = id || internalId;
+
   return (
-    <label htmlFor={id} className={cn('flex cursor-pointer items-start gap-3', className)}>
+    <label htmlFor={resolvedId} className={cn('flex cursor-pointer items-start gap-3', className)}>
       <input
         ref={ref}
-        id={id}
+        id={resolvedId}
         type="checkbox"
         className={cn(
           'mt-0.5 h-5 w-5 shrink-0 rounded-md border-[var(--color-border)] text-[var(--color-accent)]',

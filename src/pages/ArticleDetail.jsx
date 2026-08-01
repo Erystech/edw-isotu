@@ -10,6 +10,7 @@ import { LoadingState } from '../components/states';
 import { getArticleBySlug, getRelatedArticles } from '../components/data/articles';
 import { formatDate } from '../lib/FormatDate';
 import { FadeInOnScroll } from '../components/animations';
+import { PageMeta } from '../components/meta/PageMeta';
 
 function ArticleDetail() {
   const { slug } = useParams();
@@ -52,7 +53,12 @@ function ArticleDetail() {
 
   return (
     <>
-      {/* Text-first header (Image and overlays stripped) */}
+    <PageMeta 
+      title={article?.title || 'Article'} 
+      description={article?.excerpt || 'Read this article by Edwin Isotu.'} 
+      url={`/articles/${article?.id}`} 
+      type="article"
+    />
       <header>
         <Container className="pb-14 pt-36 lg:pb-20 lg:pt-44">
           <FadeInOnScroll variant="fade-up">

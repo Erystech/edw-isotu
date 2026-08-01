@@ -5,6 +5,7 @@ import { BookCard } from '../components/cards';
 import { FeaturedBook } from '../components/sections/books';
 import { LoadingState, EmptyState } from '../components/states';
 import { FadeInOnScroll, StaggerChildren } from '../components/animations';
+import { PageMeta } from '../components/meta/PageMeta';
 
 const BOOK_COVER = 'https://placehold.co/600x800/0B132B/FFFFFF?text=Cover';
 
@@ -61,6 +62,11 @@ function Books() {
 
   return (
     <>
+      <PageMeta 
+        title="Books" 
+        description="Explore books authored by Edwin Isotu, offering deep insights into public health systems and leadership." 
+        url="/books" 
+      />
       <Section id="featured-book" className="mt-12">
         <FadeInOnScroll variant="fade-up">
           <FeaturedBook {...FEATURED_BOOK} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PageMeta } from '../components/meta/PageMeta';
 
 
 /**
@@ -12,7 +13,7 @@ import { Link } from 'react-router-dom';
 const NotFound = () => {
   return (
     <>
-    
+      <PageMeta title="Page Not Found" description="The page you are looking for does not exist." url="/404" />
 
       <main
         id="main-content"

@@ -53,6 +53,8 @@ export default function MobileMenu({ id, open, onClose, links }) {
     };
   }, [open, onClose]);
 
+  
+
   const toggleExpand = (label) => {
     setExpanded((prev) => ({
       ...prev,

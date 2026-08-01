@@ -53,7 +53,7 @@ export default function Navbar({ transparent = true }) {
       <Container>
         <nav
           className="flex h-30 items-center justify-between"
-          aria-label="Primary"
+          aria-label="Main navigation"
         >
           <Link
             to="/"

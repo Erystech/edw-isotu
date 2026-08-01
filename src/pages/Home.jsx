@@ -21,6 +21,7 @@ import { VideoEmbed } from '../components/blocks';
 import { TESTIMONIALS } from '../assets/images/testimonials';
 import TestimonialCarousel from '../components/misc/TestimonialCarousel';
 import { articles } from '../components/data/articles';
+import { PageMeta } from '../components/meta/PageMeta';
 
 const HERO_IMAGE = HeroImg;
 const PORTRAIT_IMAGE = IsotuPotrait;
@@ -103,6 +104,12 @@ function Home() {
 
   return (
     <>
+    <PageMeta
+        title="Edwin Isotu" // Note: PageMeta already appends " | Edwin Isotu" if title is different, but for Home, we can just pass the name or leave default.
+        description="Official website of Edwin Isotu. Keynote speaker and mentor specializing in public health, sustainability, and executive leadership."
+        url="/"
+        keywords="edwin isotu, public health speaker, executive leadership mentor, sustainability expert"
+    />
       <Hero
         isLoading={isLoading}
         eyebrow="Keynote Speaker \u00b7 Author \u00b7 Advisor"

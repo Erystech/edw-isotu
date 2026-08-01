@@ -6,10 +6,16 @@ import {
   TargetAudience,
 } from '../../components/sections/mentorship/executive-masterclass';
 import MasterclassImg from '../../assets/images/high-level-strategy.webp';
+import { PageMeta } from '../../components/meta/PageMeta';
 
 function ExecutiveMasterclass() {
   return (
     <>
+      <PageMeta 
+        title="Executive Masterclass" 
+        description="Transform your leadership skills with Edwin Isotu's Executive Masterclass." 
+        url="/mentorship/executive-masterclass" 
+      />
       <Hero />
       <Overview image={MasterclassImg} />
       <TargetAudience />

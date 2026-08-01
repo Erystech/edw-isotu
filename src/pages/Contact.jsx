@@ -4,6 +4,7 @@ import Heading from '../components/typography/Heading';
 import Paragraph from '../components/typography/Paragraph';
 import { ContactForm, BookingInfo, Location } from '../components/sections/contact';
 import { FadeInOnScroll } from '../components/animations';
+import { PageMeta } from '../components/meta/PageMeta';
 
 const FAQS = [
   {
@@ -27,7 +28,11 @@ const FAQS = [
 export default function Contact() {
   return (
     <>
-      {/* Minimal, Text-First Header */}
+      <PageMeta 
+        title="Contact" 
+        description="Get in touch with Edwin Isotu for speaking engagements, mentorship, or consulting opportunities." 
+        url="/contact" 
+      />
       <header>
         <Container className="pb-12 pt-36 lg:pb-16 lg:pt-44">
           <FadeInOnScroll variant="fade-up">

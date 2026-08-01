@@ -9,6 +9,7 @@ import { WhyEdwin, EventFormats, BookingProcess } from '../components/sections/s
 import { VideoEmbed } from '../components/blocks';
 import { FadeInOnScroll, StaggerChildren } from '../components/animations';
 import HeroImg from '../assets/images/keynotemain.webp';
+import { PageMeta } from '../components/meta/PageMeta';
 
 const HERO_IMAGE = HeroImg;
 
@@ -113,7 +114,11 @@ const BOOKING_STEPS = [
 function Speaking() {
   return (
     <>
-
+      <PageMeta 
+        title="Speaking" 
+        description="Book Edwin Isotu for keynotes, panel discussions, and corporate training on public health, leadership, and sustainability." 
+        url="/speaking" 
+      />
       <Hero
         title="KEYNOTE SPEAKING."
         description="Electrify your audience, motivate and inspire your team and boast your business growth and visibility with an impactful presence of Dr. Edwin-Isotu."
