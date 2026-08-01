@@ -9,6 +9,7 @@ import { ArticleGrid } from '../components/sections/articles';
 import { LoadingState } from '../components/states';
 import { getArticleBySlug, getRelatedArticles } from '../components/data/articles';
 import { formatDate } from '../lib/FormatDate';
+import { FadeInOnScroll } from '../components/animations';
 
 function ArticleDetail() {
   const { slug } = useParams();
@@ -54,6 +55,7 @@ function ArticleDetail() {
       {/* Text-first header (Image and overlays stripped) */}
       <header>
         <Container className="pb-14 pt-36 lg:pb-20 lg:pt-44">
+          <FadeInOnScroll variant="fade-up">
           <Breadcrumb
             items={[
               { label: 'Home', href: '/' },
@@ -78,6 +80,7 @@ function ArticleDetail() {
               {article.readTime} min read
             </Label>
           </div>
+          </FadeInOnScroll>
         </Container>
       </header>
 

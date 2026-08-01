@@ -1,4 +1,5 @@
 import ServiceCard from '../../cards/ServiceCard';
+import { StaggerChildren } from '../../animations';
 
 /**
  * EventFormats
@@ -10,9 +11,11 @@ import ServiceCard from '../../cards/ServiceCard';
 export default function EventFormats({ formats = [] }) {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <StaggerChildren className="grid gap-6 md:grid-cols-4">
       {formats.map((format) => (
         <ServiceCard key={format.title} {...format} />
       ))}
+      </StaggerChildren>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Paragraph from '../../typography/Paragraph';
 import Label from '../../typography/Label';
 import { FormField, Input, Textarea, Select } from '../../forms';
 import Button from '../../ui/Button';
+import { FadeInOnScroll } from '../../animations';
 
 const INQUIRY_TYPES = [
   { value: 'mentorship-60min', label: '60 Minutes One-on-One Mentorship Session' },
@@ -72,6 +73,7 @@ export default function ContactForm() {
   }
 
   return (
+    <FadeInOnScroll variant="fade-up">
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
       <div className="grid gap-6 sm:grid-cols-2">
         <FormField label="Full name" required error={errors.name}>
@@ -153,5 +155,6 @@ export default function ContactForm() {
         </Button>
       </div>
     </form>
+    </FadeInOnScroll>
   );
 }

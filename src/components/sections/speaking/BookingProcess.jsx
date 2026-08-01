@@ -1,4 +1,5 @@
 import Timeline from '../about/Timeline';
+import { StaggerChildren } from '../../animations';
 
 /**
  * BookingProcess
@@ -18,7 +19,9 @@ export default function BookingProcess({ steps = [] }) {
 
   return (
     <div className="max-w-2xl">
+      <StaggerChildren className="grid gap-6 md:grid-cols-4">
       <Timeline items={items} />
+      </StaggerChildren>
     </div>
   );
 }

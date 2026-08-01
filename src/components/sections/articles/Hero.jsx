@@ -2,6 +2,7 @@ import Container from '../../layout/Container';
 import Label from '../../typography/Label';
 import Heading from '../../typography/Heading';
 import Paragraph from '../../typography/Paragraph';
+import { FadeInOnScroll } from '../../animations';
 
 /**
  * ArticlesHero
@@ -13,6 +14,7 @@ export default function ArticlesHero() {
   return (
     <Container className="pt-36 lg:pt-44">
       <div className="max-w-2xl">
+        <FadeInOnScroll variant="fade-up">
         <Label as="p">Articles</Label>
         <Heading as="h1" size="2xl" className="mt-3">
           Ideas on leadership, sustainability, and momentum
@@ -21,6 +23,7 @@ export default function ArticlesHero() {
           Short, specific writing drawn from two decades in public health,
           environmental sustainability, and executive mentorship.
         </Paragraph>
+        </FadeInOnScroll>
       </div>
     </Container>
   );

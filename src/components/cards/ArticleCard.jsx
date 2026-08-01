@@ -25,7 +25,7 @@ export default function ArticleCard({
     <Link
       to={`/articles/${slug}`}
       className={cn(
-        'group flex flex-col rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] p-6 transition-colors hover:border-[var(--color-accent-light)]',
+        'group flex flex-col rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] p-6 hover:-translate-y-1 transition-transform hover:border-[var(--color-accent-light)]',
         'focus-visible:outline-2 focus-visible:outline-[var(--color-accent-light)] focus-visible:outline-offset-2',
         className
       )}

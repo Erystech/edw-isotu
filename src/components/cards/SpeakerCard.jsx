@@ -9,7 +9,7 @@ export default function SpeakerCard({ icon: Icon, title, description, className,
   return (
     <div className={cn('card-premium p-8', className)} {...props}>
       {Icon && (
-        <div className="mb-6 grid h-12 w-12 place-items-center rounded-xl bg-[var(--color-surface-elevated)] border border-[var(--color-border)]">
+        <div className="mb-6 grid h-12 w-12 transition-transform hover:scale-[1.02] place-items-center rounded-xl bg-[var(--color-surface-elevated)] border border-[var(--color-border)]">
           <Icon className="text-[var(--color-accent-light)]" size={22} aria-hidden="true" />
         </div>
       )}

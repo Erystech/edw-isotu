@@ -1,4 +1,5 @@
 import { cn } from '../../../lib/cn';
+import { FadeInOnScroll } from '../../animations';
 
 /**
  * PhotoGrid
@@ -11,6 +12,7 @@ export default function PhotoGrid({ photos, className, ...props }) {
       className={cn('grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4', className)}
       {...props}
     >
+      <FadeInOnScroll >
       {photos.map((photo, index) => (
         <div
           key={photo.alt || index}
@@ -27,6 +29,7 @@ export default function PhotoGrid({ photos, className, ...props }) {
           />
         </div>
       ))}
+      </FadeInOnScroll>
     </div>
   );
 }

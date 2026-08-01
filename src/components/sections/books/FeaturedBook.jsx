@@ -5,6 +5,7 @@ import Paragraph from '../../typography/Paragraph';
 import Badge from '../../ui/Badge';
 import Button from '../../ui/Button';
 import Divider from '../../ui/Divider';
+import { FadeInOnScroll } from '../../animations';
 
 /**
  * FeaturedBook
@@ -28,6 +29,7 @@ export default function FeaturedBook({
   ...props
 }) {
   return (
+    <FadeInOnScroll variant="scale" delay={100}>
     <div
       className={cn(
         'grid items-start gap-12 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-20',
@@ -104,5 +106,6 @@ export default function FeaturedBook({
         )}
       </div>
     </div>
+    </FadeInOnScroll>
   );
 }
