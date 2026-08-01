@@ -34,17 +34,14 @@ const FadeInOnScroll = forwardRef(function FadeInOnScroll(
 ) {
   const localRef = useRef(null);
   const [inView, setInView] = useState(false);
+  const [animating, setAnimating] = useState(false);
 
   useEffect(() => {
     const node = localRef.current;
     if (!node) return;
 
-    const prefersReducedMotion = typeof window !== 'undefined'
-      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      : false;
-
-
-    if (typeof IntersectionObserver === 'undefined' || prefersReducedMotion) {
+    // Graceful degradation: no IO support → just show the content.
+    if (typeof IntersectionObserver === 'undefined') {
       setInView(true);
       return;
     }
@@ -53,6 +50,7 @@ const FadeInOnScroll = forwardRef(function FadeInOnScroll(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
+          setAnimating(true);
           if (once) observer.disconnect();
         } else if (!once) {
           setInView(false);
@@ -65,6 +63,10 @@ const FadeInOnScroll = forwardRef(function FadeInOnScroll(
     return () => observer.disconnect();
   }, [threshold, once]);
 
+  const handleAnimationEnd = () => {
+    setAnimating(false);
+  };
+
   return (
     <Tag
       ref={(node) => {
@@ -73,7 +75,11 @@ const FadeInOnScroll = forwardRef(function FadeInOnScroll(
         else if (forwardedRef) forwardedRef.current = node;
       }}
       className={cn(!inView && 'opacity-0', inView && VARIANT_CLASS[variant], className)}
-      style={inView && delay ? { animationDelay: `${delay}ms` } : undefined}
+      style={{
+        ...(inView && delay ? { animationDelay: `${delay}ms` } : undefined),
+        ...(animating ? { willChange: 'opacity, transform' } : undefined),
+      }}
+      onAnimationEnd={handleAnimationEnd}
       {...props}
     >
       {children}

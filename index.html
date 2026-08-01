@@ -21,10 +21,27 @@
     <meta name="twitter:image" content="https://edwinisotu.com/og-image.jpg">
     <!-- Canonical URL -->
     <link rel="canonical" href="https://edwinisotu.com/">
-    <!-- Bunny Fonts (Privacy-friendly Google Fonts alternative) -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=manrope:400,600,700|inter:400,600,700" rel="stylesheet" />
-    
+
+   
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.bunny.net/css?family=manrope:400,600,700|inter:400,600,700&display=swap"
+    >
+    <link
+      rel="stylesheet"
+      href="https://fonts.bunny.net/css?family=manrope:400,600,700|inter:400,600,700&display=swap"
+      media="print"
+      onload="this.media='all'; this.onload=null;"
+    >
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.bunny.net/css?family=manrope:400,600,700|inter:400,600,700&display=swap"
+      >
+    </noscript>
+
   </head>
   <body>
     <div id="root"></div>

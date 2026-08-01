@@ -10,18 +10,18 @@ export default defineConfig({
 
   build: {
     target: 'es2020',
-    // Adapted from 'terser' to avoid requiring new dependencies. 
-    // Esbuild is Vite's default and is significantly faster.
-    minify: 'esbuild',
+    minify: 'oxc',
     rollupOptions: {
       output: {
-        // Code splitting strategy for better caching
-        manualChunks: {
-          // Note: react-helmet-async removed from vendor chunk
-          'vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui': ['lucide-react'],
-          'markdown': ['react-markdown', 'remark-gfm'],
-          'carousel': ['embla-carousel-react']
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-router-dom') || id.includes('/react/') || id.includes('/react-dom/')) {
+              return 'vendor';
+            }
+            if (id.includes('lucide-react')) {
+              return 'ui';
+            }
+          }
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name && (assetInfo.name.endsWith('.png') || assetInfo.name.endsWith('.jpg') || assetInfo.name.endsWith('.webp'))) {
@@ -35,10 +35,6 @@ export default defineConfig({
       }
     },
     assetsInlineLimit: 4096 // Inline SVGs < 4KB
-  },
-  esbuild: {
-    // Native Vite way to drop console logs in production
-    drop: ['console', 'debugger'],
   },
   server: {
     headers: {
