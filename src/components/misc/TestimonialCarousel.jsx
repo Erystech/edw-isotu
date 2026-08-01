@@ -1,22 +1,27 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { TestimonialCard } from '../cards';
 
 export default function TestimonialCarousel({ testimonials }) {
-  // Initialize Embla with Loop and Autoplay plugins
+  const prefersReducedMotion = typeof window !== 'undefined'
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    : false;
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       align: 'start',
       loop: true,
       skipSnaps: false,
+      duration: prefersReducedMotion ? 0 : 25, 
     },
     [
       Autoplay({
-        delay: 4500, // 4.5 seconds per slide
-        stopOnInteraction: false, // Resume after user clicks prev/next
-        stopOnMouseEnter: true, // Pause when hovering to read
+        delay: 4500, 
+        stopOnInteraction: false, 
+        stopOnMouseEnter: true, 
+        active: !prefersReducedMotion 
       }),
     ]
   );
@@ -28,6 +33,16 @@ export default function TestimonialCarousel({ testimonials }) {
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
   const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
 
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      scrollPrev();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      scrollNext();
+    }
+  }, [scrollPrev, scrollNext]);
+
   const onInit = useCallback((emblaApi) => {
     setScrollSnaps(emblaApi.scrollSnapList());
   }, []);
@@ -38,22 +53,34 @@ export default function TestimonialCarousel({ testimonials }) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onInit(emblaApi);
-    onSelect(emblaApi);
+    
+    requestAnimationFrame(() => {
+      onInit(emblaApi);
+      onSelect(emblaApi);
+    });
+    
     emblaApi.on('reInit', onInit);
     emblaApi.on('reInit', onSelect);
     emblaApi.on('select', onSelect);
   }, [emblaApi, onInit, onSelect]);
 
   return (
-    <div className="relative mx-auto mt-10 max-w-7xl">
-      {/* Carousel Viewport */}
+    <div 
+      className="relative mx-auto mt-10 max-w-7xl rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[var(--color-primary)]"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Testimonials"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+    >
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="-ml-4 flex touch-pan-y backface-hidden">
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, index) => (
             <div 
               key={testimonial.name} 
-              // Responsive widths: 1 on mobile, 2 on sm/tablet, 3 on lg/desktop
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${index + 1} of ${testimonials.length}`}
               className="min-w-0 shrink-0 grow-0 basis-full pl-4 sm:basis-1/2 lg:basis-1/3"
             >
               <TestimonialCard {...testimonial} />
@@ -62,9 +89,7 @@ export default function TestimonialCarousel({ testimonials }) {
         </div>
       </div>
 
-      {/* Navigation Controls */}
       <div className="mt-8 flex items-center justify-between pl-4">
-        {/* Pagination Dots */}
         <div className="flex gap-2">
           {scrollSnaps.map((_, index) => (
             <button
@@ -80,7 +105,6 @@ export default function TestimonialCarousel({ testimonials }) {
           ))}
         </div>
 
-        {/* Prev / Next Buttons */}
         <div className="flex gap-3">
           <button
             onClick={scrollPrev}

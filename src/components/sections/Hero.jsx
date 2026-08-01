@@ -36,6 +36,8 @@ export default function Hero({
       <img
         src={image}
         alt=""
+        fetchpriority="high"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div 

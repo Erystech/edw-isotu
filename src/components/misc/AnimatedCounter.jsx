@@ -8,24 +8,19 @@ import { useEffect, useRef, useState } from 'react';
  */
 export default function AnimatedCounter({ value, duration = 1400 }) {
   const ref = useRef(null);
-  const [display, setDisplay] = useState(0);
   const played = useRef(false);
 
-  useEffect(() => {
-    const prefersReducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const [display, setDisplay] = useState(() => {
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const noObserver = typeof window !== 'undefined' && typeof IntersectionObserver === 'undefined';
+    return (prefersReducedMotion || noObserver) ? value : 0;
+  });
 
-    if (prefersReducedMotion) {
-      setDisplay(value);
-      return;
-    }
+  useEffect(() => {
+    if (display === value) return;
 
     const node = ref.current;
-    if (!node || typeof IntersectionObserver === 'undefined') {
-      setDisplay(value);
-      return;
-    }
+    if (!node) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -49,7 +44,7 @@ export default function AnimatedCounter({ value, duration = 1400 }) {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [value, duration]);
+  }, [value, duration, display]);
 
   return (
     <span ref={ref} aria-label={String(value)}>

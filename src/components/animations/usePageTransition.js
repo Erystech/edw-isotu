@@ -10,9 +10,21 @@ import { useLocation } from 'react-router-dom';
  */
 export function usePageTransition() {
   const { pathname } = useLocation();
-  const [visible, setVisible] = useState(false);
+  
+  const [visible, setVisible] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
 
   useEffect(() => {
+    const prefersReducedMotion = typeof window !== 'undefined' 
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+      : false;
+      
+    if (prefersReducedMotion) return;
+
     setVisible(false);
     const raf1 = requestAnimationFrame(() => {
       const raf2 = requestAnimationFrame(() => setVisible(true));

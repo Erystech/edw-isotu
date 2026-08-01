@@ -12,9 +12,25 @@ import { QuoteCard } from '../cards';
  * @param {{ quote: string, cite?: string }[]} quotes
  */
 export default function QuoteCarousel({ quotes }) {
+  const prefersReducedMotion = typeof window !== 'undefined'
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    : false;
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { align: 'start', loop: true, skipSnaps: false },
-    [Autoplay({ delay: 5500, stopOnInteraction: false, stopOnMouseEnter: true })]
+    { 
+      align: 'start', 
+      loop: true, 
+      skipSnaps: false,
+      duration: prefersReducedMotion ? 0 : 25 
+    },
+    [
+      Autoplay({ 
+        delay: 5500, 
+        stopOnInteraction: false, 
+        stopOnMouseEnter: true,
+        active: !prefersReducedMotion 
+      })
+    ]
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -24,25 +40,49 @@ export default function QuoteCarousel({ quotes }) {
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
   const scrollTo = useCallback((index) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
 
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      scrollPrev();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      scrollNext();
+    }
+  }, [scrollPrev, scrollNext]);
+
   const onInit = useCallback((api) => setScrollSnaps(api.scrollSnapList()), []);
   const onSelect = useCallback((api) => setSelectedIndex(api.selectedScrollSnap()), []);
 
   useEffect(() => {
     if (!emblaApi) return;
-    onInit(emblaApi);
-    onSelect(emblaApi);
+  
+    requestAnimationFrame(() => {
+      onInit(emblaApi);
+      onSelect(emblaApi);
+    });
+    
     emblaApi.on('reInit', onInit);
     emblaApi.on('reInit', onSelect);
     emblaApi.on('select', onSelect);
   }, [emblaApi, onInit, onSelect]);
 
   return (
-    <div className="relative mx-auto mt-10 max-w-7xl">
+    <div 
+      className="relative mx-auto mt-10 max-w-7xl rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[var(--color-primary)]"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Quotes"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+    >
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="-ml-4 flex touch-pan-y backface-hidden sm:-ml-6">
           {quotes.map((item, index) => (
             <div
               key={index}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${index + 1} of ${quotes.length}`}
               className="min-w-0 shrink-0 grow-0 basis-[85%] pl-4 sm:basis-1/2 sm:pl-6 lg:basis-1/3"
             >
               <QuoteCard quote={item.quote} cite={item.cite} />
@@ -51,9 +91,7 @@ export default function QuoteCarousel({ quotes }) {
         </div>
       </div>
 
-      {/* Added flex-wrap, gap-4, and pr-4/sm:pr-6 to prevent layout bleeding */}
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4 pl-4 pr-4 sm:pl-6 sm:pr-6">
-        {/* Added flex-wrap to the dots container */}
         <div className="flex flex-wrap gap-2">
           {scrollSnaps.map((_, index) => (
             <button

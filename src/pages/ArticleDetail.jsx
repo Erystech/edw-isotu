@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { Section, Container } from '../components/layout';
 import { Breadcrumb, SectionHeading } from '../components/misc';
@@ -18,10 +18,16 @@ function ArticleDetail() {
   const [isLoading, setIsLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
+  const prevSlugRef = useRef(slug);
+  if (slug !== prevSlugRef.current) {
+    prevSlugRef.current = slug;
+    setIsLoading(true);
+    setNotFound(false);
+  }
+
   useEffect(() => {
     // Scroll to top on article navigation
     window.scrollTo({ top: 0, behavior: 'instant' });
-    setIsLoading(true);
 
     // Simulating a network request for the article
     const timer = setTimeout(() => {
@@ -53,12 +59,12 @@ function ArticleDetail() {
 
   return (
     <>
-    <PageMeta 
-      title={article?.title || 'Article'} 
-      description={article?.excerpt || 'Read this article by Edwin Isotu.'} 
-      url={`/articles/${article?.id}`} 
-      type="article"
-    />
+      <PageMeta 
+        title={article?.title || 'Article'} 
+        description={article?.excerpt || 'Read this article by Edwin Isotu.'} 
+        url={`/articles/${article?.slug}`} 
+        type="article"
+      />
       <header>
         <Container className="pb-14 pt-36 lg:pb-20 lg:pt-44">
           <FadeInOnScroll variant="fade-up">

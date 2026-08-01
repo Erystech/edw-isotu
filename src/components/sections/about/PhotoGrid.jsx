@@ -25,6 +25,7 @@ export default function PhotoGrid({ photos, className, ...props }) {
             src={photo.src}
             alt={photo.alt || ''}
             loading="lazy"
+            decoding="async"
             className="aspect-square h-full w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
           />
         </div>

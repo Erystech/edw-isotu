@@ -39,8 +39,12 @@ const FadeInOnScroll = forwardRef(function FadeInOnScroll(
     const node = localRef.current;
     if (!node) return;
 
-    // Graceful degradation: no IO support → just show the content.
-    if (typeof IntersectionObserver === 'undefined') {
+    const prefersReducedMotion = typeof window !== 'undefined'
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      : false;
+
+
+    if (typeof IntersectionObserver === 'undefined' || prefersReducedMotion) {
       setInView(true);
       return;
     }
