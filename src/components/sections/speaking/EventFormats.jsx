@@ -10,12 +10,10 @@ import { StaggerChildren } from '../../animations';
  */
 export default function EventFormats({ formats = [] }) {
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-      <StaggerChildren className="grid gap-6 md:grid-cols-4">
+    <StaggerChildren className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {formats.map((format) => (
         <ServiceCard key={format.title} {...format} />
       ))}
-      </StaggerChildren>
-    </div>
+    </StaggerChildren>
   );
 }
