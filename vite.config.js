@@ -12,29 +12,31 @@ export default defineConfig({
     target: 'es2020',
     minify: 'oxc',
     rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react-router-dom') || id.includes('/react/') || id.includes('/react-dom/')) {
-              return 'vendor';
+      output: [
+        {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('react-router-dom') || id.includes('/react/') || id.includes('/react-dom/')) {
+                return 'vendor';
+              }
+              if (id.includes('lucide-react')) {
+                return 'ui';
+              }
             }
-            if (id.includes('lucide-react')) {
-              return 'ui';
+          },
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name && (assetInfo.name.endsWith('.png') || assetInfo.name.endsWith('.jpg') || assetInfo.name.endsWith('.webp'))) {
+              return 'assets/images/[name].[hash][extname]'
             }
+            if (assetInfo.name && assetInfo.name.endsWith('.woff2')) {
+              return 'assets/fonts/[name].[hash][extname]'
+            }
+            return 'assets/[name].[hash][extname]'
           }
-        },
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name && (assetInfo.name.endsWith('.png') || assetInfo.name.endsWith('.jpg') || assetInfo.name.endsWith('.webp'))) {
-            return 'assets/images/[name].[hash][extname]'
-          }
-          if (assetInfo.name && assetInfo.name.endsWith('.woff2')) {
-            return 'assets/fonts/[name].[hash][extname]'
-          }
-          return 'assets/[name].[hash][extname]'
         }
-      }
+      ]
     },
-    assetsInlineLimit: 4096 // Inline SVGs < 4KB
+    assetsInlineLimit: 4096
   },
   server: {
     headers: {
