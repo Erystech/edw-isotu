@@ -53,8 +53,6 @@ export default function MobileMenu({ id, open, onClose, links }) {
     };
   }, [open, onClose]);
 
-  
-
   const toggleExpand = (label) => {
     setExpanded((prev) => ({
       ...prev,
@@ -63,7 +61,7 @@ export default function MobileMenu({ id, open, onClose, links }) {
   };
 
   const isParentActive = (subLinks) => {
-    return subLinks?.some(sub => location.pathname.startsWith(sub.href));
+    return subLinks?.some((sub) => location.pathname.startsWith(sub.href));
   };
 
   if (!open) return null;
@@ -93,10 +91,9 @@ export default function MobileMenu({ id, open, onClose, links }) {
             <X className="text-[var(--color-primary)]" />
           </button>
         </div>
-
-        <ul className="flex flex-col gap-1">
+        <ul className="flex w-full flex-col gap-1">
           {links.map((link) => (
-            <li key={link.label}>
+            <li key={link.label} className="w-full">
               {link.subLinks ? (
                 <>
                   <button
@@ -117,14 +114,14 @@ export default function MobileMenu({ id, open, onClose, links }) {
                     />
                   </button>
                   {expanded[link.label] && (
-                    <ul className="mt-1 flex flex-col gap-1 pl-4">
+                    <ul className="mt-1 flex w-full flex-col gap-1 pl-4">
                       {link.subLinks.map((sub) => (
-                        <li key={sub.href}>
+                        <li key={sub.href} className="w-full">
                           <NavLink
                             to={sub.href}
                             onClick={onClose}
                             className={({ isActive }) =>
-                              `block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)] ${
+                              `block w-full rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)] ${
                                 isActive 
                                   ? 'text-[var(--color-accent-light)] bg-[var(--color-surface)]'
                                   : 'text-[var(--color-text-muted)]'
@@ -143,7 +140,7 @@ export default function MobileMenu({ id, open, onClose, links }) {
                   to={link.href}
                   onClick={onClose}
                   className={({ isActive }) =>
-                    `block rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)] ${
+                    `block w-full rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent-light)] ${
                       isActive 
                         ? 'text-[var(--color-accent-light)] bg-[var(--color-surface)]' 
                         : 'text-[var(--color-text)]'

@@ -67,7 +67,7 @@ function Books() {
         description="Explore books authored by Edwin Isotu, offering deep insights into public health systems and leadership." 
         url="/books" 
       />
-      <Section id="featured-book" className="mt-12">
+      <Section id="featured-book" className="mt-20">
         <FadeInOnScroll variant="fade-up">
           <FeaturedBook {...FEATURED_BOOK} />
         </FadeInOnScroll>
