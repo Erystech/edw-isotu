@@ -13,8 +13,7 @@ const BREADCRUMB = [
   { label: 'Clearlift Africa Mentorship' },
 ];
 
-// TODO: replace with the live Clearlift Africa application form URL.
-const APPLY_URL = 'https://forms.gle/REPLACE_WITH_CLEARLIFT_APPLICATION_FORM';
+const APPLY_URL = 'https://docs.google.com/forms/d/1wfderJdfVbclgb7o7Hliu45HQNhZ2mMkhTUwWq0RcC0/prefill';
 
 export default function Hero() {
   return (
@@ -40,7 +39,7 @@ export default function Hero() {
         </Paragraph>
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <Button href={APPLY_URL} size="lg">
+          <Button href={APPLY_URL} size="lg" target="_blank">
             Apply Now
             <ArrowRight size={18} aria-hidden="true" />
           </Button>

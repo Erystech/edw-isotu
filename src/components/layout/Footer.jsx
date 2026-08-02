@@ -42,6 +42,8 @@ export default function Footer() {
               <img 
                 src='/isotu-logo-n.png'
                 alt="Edwin Isotu" 
+                width={220}
+                height={68}
                 className="h-17 w-auto object-contain"
               />
             </a>

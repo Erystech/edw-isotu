@@ -23,6 +23,8 @@ export default function BookCard({
           src={cover}
           alt={`${title} book cover`}
           loading="lazy"
+          width={600}
+          height={800}
           className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
         {badge && (

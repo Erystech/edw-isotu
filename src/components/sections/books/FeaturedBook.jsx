@@ -43,6 +43,8 @@ export default function FeaturedBook({
             src={cover}
             alt={`${title} book cover`}
             loading="lazy"
+            width={600}
+            height={800}
             className="aspect-[3/4] w-full object-cover"
           />
           {badge && (

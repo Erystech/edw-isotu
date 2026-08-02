@@ -62,6 +62,8 @@ export default function Navbar({ transparent = true }) {
             <img 
               src='/isotu-logo-n.png'
               alt="Edwin Isotu" 
+              width={220}
+              height={44}
               className="h-11 w-auto object-contain"
             />
           </Link>

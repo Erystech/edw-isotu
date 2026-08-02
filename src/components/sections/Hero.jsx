@@ -38,6 +38,8 @@ export default function Hero({
         alt=""
         fetchpriority="high"
         decoding="async"
+        width={1920}
+        height={1080}
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div 
@@ -63,7 +65,11 @@ export default function Hero({
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             {primaryAction && (
-              <Button href={primaryAction.href} size="lg">
+              <Button 
+                href={primaryAction.href} 
+                target={primaryAction.target} 
+                size="lg"
+              >
                 {primaryAction.label}
                 <ArrowRight size={18} aria-hidden="true" />
               </Button>
@@ -71,6 +77,7 @@ export default function Hero({
             {secondaryAction && (
               <Button
                 href={secondaryAction.href}
+                target={secondaryAction.target} 
                 variant="ghost"
                 size="lg"
                 className="!text-white hover:!bg-white/10"

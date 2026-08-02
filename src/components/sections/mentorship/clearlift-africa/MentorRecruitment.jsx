@@ -5,7 +5,7 @@ import Paragraph from '../../../typography/Paragraph';
 import Button from '../../../ui/Button';
 import { FadeInOnScroll } from '../../../animations';
 
-const APPLY_URL = 'https://forms.gle/REPLACE_WITH_CLEARLIFT_APPLICATION_FORM';
+const APPLY_URL = 'https://docs.google.com/forms/d/1wfderJdfVbclgb7o7Hliu45HQNhZ2mMkhTUwWq0RcC0/prefill';
 
 export default function MentorRecruitment() {
   return (
@@ -29,7 +29,7 @@ export default function MentorRecruitment() {
 
           <div className="flex flex-col gap-4 sm:flex-row">
             <Button href="/contact">Contact Us</Button>
-            <Button href={APPLY_URL} variant="secondary">
+            <Button href={APPLY_URL} variant="secondary" target="_blank">
               Apply as a Mentee
             </Button>
           </div>

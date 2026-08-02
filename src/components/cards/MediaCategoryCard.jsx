@@ -35,6 +35,8 @@ export default function MediaCategoryCard({
         src={image}
         alt=""
         loading="lazy"
+        width={800}
+        height={600}
         className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
       />
       <div

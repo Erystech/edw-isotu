@@ -287,7 +287,6 @@ function Home() {
             title="Ready to bring momentum to your next event?"
             description="Check availability and get a response within one business day."
             primaryAction={{ label: 'Check availability', href: '/contact' }}
-            secondaryAction={{ label: 'Download media kit', href: '/media' }}
           />
         </FadeInOnScroll>
       </Section>

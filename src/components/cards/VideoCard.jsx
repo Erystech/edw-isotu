@@ -31,7 +31,8 @@ export default function VideoCard({
         src={thumbnail}
         alt=""
         loading="lazy"
-        decoding="async"
+        width={1280}
+        height={720}
         className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
       {/* 

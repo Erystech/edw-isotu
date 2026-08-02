@@ -9,6 +9,8 @@ export default function LogoStrip({ logos, marquee = true, className, ...props }
           src={logo.src}
           alt={logo.alt}
           loading="lazy"
+          width={200}
+          height={80}
           className="h-10 w-auto shrink-0 object-contain opacity-60 brightness-0 invert transition-opacity hover:opacity-100 md:h-12 lg:h-16"
         />
       ))}

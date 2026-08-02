@@ -44,6 +44,8 @@ export default function AboutPreview({
           src={image}
           alt={imageAlt}
           loading="lazy"
+          width={800}
+          height={1000}
           className="aspect-[4/5] w-full object-cover"
         />
       </div>

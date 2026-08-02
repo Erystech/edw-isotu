@@ -124,7 +124,7 @@ function Speaking() {
         description="Electrify your audience, motivate and inspire your team and boast your business growth and visibility with an impactful presence of Dr. Edwin-Isotu."
         image={HERO_IMAGE}
         primaryAction={{ label: 'Check availability', href: '/contact' }}
-        secondaryAction={{ label: 'Join Telegram', href: '#reel' }}
+        secondaryAction={{ label: 'Join Telegram', href: 'https://t.me/+2eL8rjK7CVg5NWVk', target: '_blank' }}
       />
 
       <Section>

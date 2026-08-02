@@ -24,11 +24,13 @@ export default function MentorshipHubCard({
       {image && (
         <div className="overflow-hidden">
           <img
-            src={image}
-            alt=""
-            loading="lazy"
-            className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.04]"
-          />
+              src={image}
+              alt=""
+              loading="lazy"
+              width={800}
+              height={600}
+              className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.04]"
+            />
         </div>
       )}
 

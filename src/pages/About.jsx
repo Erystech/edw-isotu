@@ -151,6 +151,9 @@ function About() {
               <img 
                 src={BIO_IMAGE}
                 alt="Dr. Edwin Isotu Edeh" 
+                loading="lazy"
+                width={800}
+                height={1000}
                 className="w-full h-auto rounded-xl object-cover"
               />
               <Paragraph size='lg' tone='muted'>

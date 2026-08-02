@@ -26,12 +26,13 @@ export default function TestimonialCard({
       {image && (
         <div className="mb-5 aspect-[4/3] w-full shrink-0 overflow-hidden rounded-xl bg-[var(--color-surface-elevated)]">
           <img
-            src={image}
-            alt={`Portrait of ${name}`}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
-          />
+              src={image}
+              alt={`Portrait of ${name}`}
+              loading="lazy"
+              width={800}
+              height={600}
+              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
+            />
         </div>
       )}
 

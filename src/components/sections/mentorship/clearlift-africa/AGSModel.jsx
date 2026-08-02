@@ -40,6 +40,8 @@ export default function AGSModel({ image }) {
             src={image}
             alt="Dr. Edwin Isotu mentoring a group of emerging leaders"
             loading="lazy"
+            width={800}
+            height={1000}
             className="aspect-[4/5] w-full object-cover"
           />
         </FadeInOnScroll>
