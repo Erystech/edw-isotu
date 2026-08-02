@@ -1,4 +1,4 @@
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import Container from './Container';
 import Divider from '../ui/Divider';
 import { SocialLinks } from '../misc';
@@ -35,29 +35,38 @@ export default function Footer() {
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <a
-              href="/"
-              className="flex items-center transition-opacity hover:opacity-80"
-            >
-              <img 
-                src='/isotu-logo-n.png'
-                alt="Edwin Isotu" 
-                width={220}
-                height={68}
-                className="h-17 w-auto object-contain"
-              />
-            </a>
-            <p className="mt-4 p-3 max-w-xs text-sm leading-relaxed text-[var(--color-text-muted)]">
-              Keynote speaker and author helping leaders turn strategy into
-              momentum.
-            </p>
-            <a
-              href="mailto:hello@edwinisotu.com"
-              className="mt-6 p-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text)] transition-colors hover:text-[var(--color-accent-light)]"
-            >
-              { <Mail size={16} aria-hidden="true" /> }
-              hello@edwinisotu.com
-            </a>
+              <a
+                href="/"
+                className="flex items-center transition-opacity hover:opacity-80"
+              >
+                <img 
+                  src='/isotu-logo-n.png'
+                  alt="Edwin Isotu" 
+                  width={220}
+                  height={68}
+                  className="h-17 w-auto object-contain"
+                />
+              </a>
+              <p className="mt-4 p-3 max-w-xs text-sm leading-relaxed text-[var(--color-text-muted)]">
+                Keynote speaker and author helping leaders turn strategy into
+                momentum.
+              </p>
+              <div className='flex flex-col'>
+                  <a
+                href="mailto:connect@edwinisotu.com"
+                className="mt-6 p-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text)] transition-colors hover:text-[var(--color-accent-light)]"
+              >
+                { <Mail size={16} aria-hidden="true" /> }
+                connect@edwinisotu.com
+              </a>
+              <a 
+                href="tel:+2347042566000"
+                className="mt-6 p-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-text)] transition-colors hover:text-[var(--color-accent-light)]" 
+              >
+                { <Phone size={16} aria-hidden="true" /> }
+                +234 704 256 6000
+              </a>
+            </div>
           </div>
 
           {COLUMNS.map((col) => (

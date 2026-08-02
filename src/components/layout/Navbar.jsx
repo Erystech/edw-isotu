@@ -5,6 +5,7 @@ import { cn } from '../../lib/cn';
 import Container from './Container';
 import Button from '../ui/Button';
 import MobileMenu from './MobileMenu';
+import TopBanner from './TopBanner'; // <-- Import the new banner
 
 const NAV_LINKS = [
   { label: 'About', href: '/about' },
@@ -28,7 +29,8 @@ export default function Navbar({ transparent = true }) {
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    // Increased scroll threshold slightly to match the banner height
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -36,7 +38,6 @@ export default function Navbar({ transparent = true }) {
 
   const isSolid = scrolled || !transparent;
 
-  // Helper to keep parent dropdown highlighted if a child is active
   const isParentActive = (subLinks) => {
     return subLinks?.some(sub => location.pathname.startsWith(sub.href));
   };
@@ -44,12 +45,26 @@ export default function Navbar({ transparent = true }) {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b',
+        // CHANGED: Restored 'fixed' so it hovers over the Hero section
+        'fixed inset-x-0 top-0 z-50 flex flex-col transition-all duration-300 border-b',
         isSolid 
           ? 'bg-[var(--color-background)] border-[var(--color-border)] shadow-[var(--shadow-soft)]' 
           : 'bg-transparent border-transparent'
       )}
     >
+      {/* 
+        NEW: Collapsible Banner Wrapper 
+        When 'scrolled' is true, height goes to 0 and opacity fades out 
+      */}
+      <div 
+        className={cn(
+          "w-full overflow-hidden transition-all duration-300 ease-in-out",
+          scrolled ? "h-0 opacity-0" : "h-10 opacity-100"
+        )}
+      >
+        <TopBanner />
+      </div>
+
       <Container>
         <nav
           className="flex h-30 items-center justify-between"
@@ -77,7 +92,7 @@ export default function Navbar({ transparent = true }) {
                       className={cn(
                         'flex items-center gap-1 text-sm font-medium transition-colors py-2',
                         isParentActive(link.subLinks)
-                          ? 'text-[var(--color-accent-light)]' // Active state for parent
+                          ? 'text-[var(--color-accent-light)]'
                           : isSolid
                             ? 'text-[var(--color-text)] hover:text-[var(--color-accent-light)]'
                             : 'text-white/90 hover:text-[var(--color-accent-light)]'
@@ -88,7 +103,6 @@ export default function Navbar({ transparent = true }) {
                       {link.label}
                       <ChevronDown size={14} />
                     </button>
-                    {/* Dropdown Menu */}
                     <ul className="absolute left-0 top-full hidden w-64 flex-col gap-1 rounded-lg bg-[var(--color-surface-elevated)] p-2 shadow-[var(--shadow-card)] border border-[var(--color-border)] group-hover:flex">
                       {link.subLinks.map((sub) => (
                         <li key={sub.href}>
@@ -113,7 +127,7 @@ export default function Navbar({ transparent = true }) {
                     className={({ isActive }) => cn(
                       'text-sm font-medium transition-colors py-2',
                       isActive 
-                        ? 'text-[var(--color-accent-light)]' // Active state for standard link
+                        ? 'text-[var(--color-accent-light)]'
                         : isSolid
                           ? 'text-[var(--color-text)] hover:text-[var(--color-accent-light)]'
                           : 'text-white/90 hover:text-[var(--color-accent-light)]'
